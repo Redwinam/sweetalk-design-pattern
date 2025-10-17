@@ -20,99 +20,99 @@
 
 将调用操作的请求对象与实现操作的接受对象解耦，顺序为调用者->命令->接受者。
 
-Command(抽象命令类)，用来声明执行操作的接口。
+抽象命令类（抽象命令类），用来声明执行操作的接口。
 
-ConcreteCommond(命令实现类)，命令的具体实现，将接收者对象与动作绑定，从而调用接收者相应的操作完成命令。
+具体命令类（具体命令类），命令的具体实现，将接收者对象与动作绑定，从而调用接收者相应的操作完成命令。
 
-Invoker(调用者)，调用命令实现某个请求。
+调用者（调用者），调用命令实现某个请求。
 
-Receive(接收者)，实施与执行与请求相关的操作。
+接收者（接收者），实施与执行与请求相关的操作。
 
 ### 代码实现
 
 ```java
-public abstract class Command {
-    protected Barbecuer receiver;
+public abstract class 命令 {
+    protected 烧烤者 接收者;
 
-    public Command(Barbecuer receiver) {
-        this.receiver = receiver;
+    public 命令(烧烤者 接收者) {
+        this.接收者 = 接收者;
     }
 
-    public abstract void excuteCommand();
+    public abstract void 执行命令();
 }
 
-public class BakeChickenWingCommand extends Command {
-    public BakeChickenWingCommand(Barbecuer receiver) {
-        super(receiver);
+public class 烤鸡翅命令 extends 命令 {
+    public 烤鸡翅命令(烧烤者 接收者) {
+        super(接收者);
     }
 
     @Override
-    public void excuteCommand() {
-        receiver.bakeChickenWing();
+    public void 执行命令() {
+        接收者.烤鸡翅();
     }
 }
 
-public class BakeMuttonCommand extends Command {
-    public BakeMuttonCommand(Barbecuer receiver) {
-        super(receiver);
+public class 烤羊肉串命令 extends 命令 {
+    public 烤羊肉串命令(烧烤者 接收者) {
+        super(接收者);
     }
 
     @Override
-    public void excuteCommand() {
-        receiver.bakeMutton();
+    public void 执行命令() {
+        接收者.烤羊肉串();
     }
 }
 
-public class Waiter {
-    private List<Command> orders = new ArrayList<>();
+public class 服务员 {
+    private List<命令> 订单列表 = new ArrayList<>();
 
-    public void setOrder(Command command) {
-        if (command.getClass().toString().equals("class design_patterns.java.command.BakeChickenWingCommand")) {
+    public void 设置订单(命令 命令对象) {
+        if (命令对象.getClass().toString().equals("class design_patterns.java.command.烤鸡翅命令")) {
             System.out.println("服务员：鸡翅没有了，请点别的烧烤。");
         }else {
-            orders.add(command);
-            System.out.print("增加订单：" + command.getClass().toString());
+            订单列表.add(命令对象);
+            System.out.print("增加订单：" + 命令对象.getClass().toString());
             System.out.println(" 时间：" + new Date());
         }
     }
 
-    public void cancelOrder(Command command) {
-        orders.remove(command);
-        System.out.print("取消订单：" + command.getClass().toString());
+    public void 取消订单(命令 命令对象) {
+        订单列表.remove(命令对象);
+        System.out.print("取消订单：" + 命令对象.getClass().toString());
         System.out.println(" 时间：" + new Date());
     }
 
-    public void excute() {
-        for(Command cmd : orders){
-            cmd.excuteCommand();
+    public void 执行订单() {
+        for(命令 命令对象 : 订单列表){
+            命令对象.执行命令();
         }
     }
 }
 
-public class Barbecuer {
-    public void bakeMutton() {
+public class 烧烤者 {
+    public void 烤羊肉串() {
         System.out.println("烤羊肉串！");
     }
 
-    public void bakeChickenWing() {
+    public void 烤鸡翅() {
         System.out.println("烤鸡翅！");
     }
 }
 
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
         // 开店前的准备
-        Barbecuer boy = new Barbecuer();
-        Command bakeMuttonCommand1 = new BakeMuttonCommand(boy);
-        Command bakeMuttonCommand2 = new BakeMuttonCommand(boy);
-        Command bakeChickenWingCommand1 = new BakeChickenWingCommand(boy);
-        Waiter girl = new Waiter();
+        烧烤者 烧烤师傅 = new 烧烤者();
+        命令 烤羊肉串命令1 = new 烤羊肉串命令(烧烤师傅);
+        命令 烤羊肉串命令2 = new 烤羊肉串命令(烧烤师傅);
+        命令 烤鸡翅命令1 = new 烤鸡翅命令(烧烤师傅);
+        服务员 女服务员 = new 服务员();
 
         // 开门营业
-        girl.setOrder(bakeMuttonCommand1);
-        girl.setOrder(bakeMuttonCommand2);
-        girl.setOrder(bakeChickenWingCommand1);
-        girl.excute();
+        女服务员.设置订单(烤羊肉串命令1);
+        女服务员.设置订单(烤羊肉串命令2);
+        女服务员.设置订单(烤鸡翅命令1);
+        女服务员.执行订单();
     }
 }
 

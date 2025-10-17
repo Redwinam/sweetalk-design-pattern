@@ -34,100 +34,100 @@
 首先定义一个收费抽象类。
 
 ```Java
-public abstract class CashSuper{
-    public abstract double acceptCash(double money);
+public abstract class 收费抽象类{
+    public abstract double 接受现金(double 金额);
 }
 ```
 
-定义具体的促销算法类，包括正常收费类`CashNormal`，打折收费类`CashRebate`，返利收费类`CashReturn`。
+定义具体的促销算法类，包括正常收费类`正常收费`，打折收费类`打折收费`，返利收费类`返利收费`。
 
 ```Java
-public class CashNormal extends CashSuper {
+public class 正常收费 extends 收费抽象类 {
     @Override
-    public double acceptCash(double money) {
-        return money;
+    public double 接受现金(double 金额) {
+        return 金额;
     }
 }
 
-public class CashRebate extends CashSuper {
-    private double moneyRebate;
+public class 打折收费 extends 收费抽象类 {
+    private double 折扣率;
 
-    public CashRebate(String moneyRebate) {
-        this.moneyRebate = Double.parseDouble(moneyRebate);
+    public 打折收费(String 折扣率) {
+        this.折扣率 = Double.parseDouble(折扣率);
     }
 
     @Override
-    public double acceptCash(double money) {
-        return money * moneyRebate;
+    public double 接受现金(double 金额) {
+        return 金额 * 折扣率;
     }
 
-    public double getMoneyRebate() {
-        return moneyRebate;
+    public double 获取折扣率() {
+        return 折扣率;
     }
   
-    public void setMoneyRebate(double moneyRebate) {
-        this.moneyRebate = moneyRebate;
+    public void 设置折扣率(double 折扣率) {
+        this.折扣率 = 折扣率;
     }
 }
 
-public class CashReturn extends CashSuper {
-    private double moneyCondition;
-    private double moneyReturn;
+public class 返利收费 extends 收费抽象类 {
+    private double 满额条件;
+    private double 返利金额;
 
-    public CashReturn(String moneyCondition, String moneyReturn) {
-        this.moneyCondition = Double.parseDouble(moneyCondition);
-        this.moneyReturn = Double.parseDouble(moneyReturn);
+    public 返利收费(String 满额条件, String 返利金额) {
+        this.满额条件 = Double.parseDouble(满额条件);
+        this.返利金额 = Double.parseDouble(返利金额);
     }
 
     @Override
-    public double acceptCash(double money) {
-        if(money >= this.moneyCondition) {
-            return money - Math.floor(money / this.moneyCondition) * moneyReturn;
+    public double 接受现金(double 金额) {
+        if(金额 >= this.满额条件) {
+            return 金额 - Math.floor(金额 / this.满额条件) * 返利金额;
         }
-        return money;
+        return 金额;
     }
 
-    public double getMoneyCondition() {
-        return moneyCondition;
+    public double 获取满额条件() {
+        return 满额条件;
     }
 
-    public void setMoneyCondition(double moneyCondition) {
-        this.moneyCondition = moneyCondition;
+    public void 设置满额条件(double 满额条件) {
+        this.满额条件 = 满额条件;
     }
 
-    public double getMoneyReturn() {
-        return moneyReturn;
+    public double 获取返利金额() {
+        return 返利金额;
     }
 
-    public void setMoneyReturn(double moneyReturn) {
-        this.moneyReturn = moneyReturn;
+    public void 设置返利金额(double 返利金额) {
+        this.返利金额 = 返利金额;
     }
 }
 ```
 
-定义上下文类`CashContext`，维护对算法对象的引用。
+定义上下文类`收费上下文`，维护对算法对象的引用。
 
 ```Java
-public class CashContext {
+public class 收费上下文 {
 
-    private CashSuper cs;
+    private 收费抽象类 收费策略;
 
-    public CashContext(String type) {
-        switch(type){
+    public 收费上下文(String 类型) {
+        switch(类型){
             case "正常收费":
-                this.cs = new CashNormal();
+                this.收费策略 = new 正常收费();
                 break;
             case "满返":
-                this.cs = new CashReturn("300", "100");
+                this.收费策略 = new 返利收费("300", "100");
                 break;
             case "打折":
-                this.cs = new CashRebate("0.8");
+                this.收费策略 = new 打折收费("0.8");
                 break;
         }
     }
 
-    public double getResult(double money){
-        return cs.acceptCash(money);
+    public double 获取结果(double 金额){
+        return 收费策略.接受现金(金额);
     }
 }
 ```
@@ -135,17 +135,17 @@ public class CashContext {
 客户端如下。
 
 ```Java
-public class CacheClient {
+public class 收银客户端 {
     public static void main(String[] args) {
-        double num = 10;
-        double price = 100;
+        double 数量 = 10;
+        double 单价 = 100;
 
-        CashContext csuper1 = new CashContext("正常收费");
-        CashContext csuper2 = new CashContext("满返");
-        CashContext csuper3 = new CashContext("打折");
-        System.out.println(csuper1.getResult(price * num));
-        System.out.println(csuper2.getResult(price * num));
-        System.out.println(csuper3.getResult(price * num));
+        收费上下文 收费策略1 = new 收费上下文("正常收费");
+        收费上下文 收费策略2 = new 收费上下文("满返");
+        收费上下文 收费策略3 = new 收费上下文("打折");
+        System.out.println(收费策略1.获取结果(单价 * 数量));
+        System.out.println(收费策略2.获取结果(单价 * 数量));
+        System.out.println(收费策略3.获取结果(单价 * 数量));
     }
 }
 ```

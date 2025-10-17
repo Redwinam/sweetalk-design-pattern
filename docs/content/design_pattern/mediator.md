@@ -30,94 +30,94 @@ ConcreteColleague（具体同事类）：每个具体同事只知道自己的行
 
 ### 代码实现
 
-`Mediator` 类：
+`中介者` 类：
 
 ```java
-abstract class Mediator {
+abstract class 中介者 {
     //定义一个抽象的发送消息方法，得到同事对象和发送消息
-    public abstract void send(String message,Colleague colleague);
+    public abstract void 发送消息(String 消息内容,同事 同事对象);
 }
 ```
 
-`ConcreteMediator` 类：
+`具体中介者` 类：
 
 ```java
-public class ConcreteMediator extends Mediator{
-    public ConcreteColleague1 concreteColleague1;
-    public ConcreteColleague2 concreteColleague2;
+public class 具体中介者 extends 中介者{
+    public 具体同事1 具体同事1;
+    public 具体同事2 具体同事2;
 
-    public void setColleague1(ConcreteColleague1 value){
-        this.concreteColleague1 = value;
+    public void 设置同事1(具体同事1 同事对象){
+        this.具体同事1 = 同事对象;
     }
-    public void setColleague2(ConcreteColleague2 value){
-        this.concreteColleague2 = value;
+    public void 设置同事2(具体同事2 同事对象){
+        this.具体同事2 = 同事对象;
     }
     @Override
-    public void send(String message, Colleague colleague) {
-        if(colleague == concreteColleague1){
-            concreteColleague2.notify(message);
+    public void 发送消息(String 消息内容, 同事 同事对象) {
+        if(同事对象 == 具体同事1){
+            具体同事2.通知(消息内容);
         }else{
-            concreteColleague1.notify(message);
+            具体同事1.通知(消息内容);
         }
     }
 }
 ```
 
-`Colleague` 类：
+`同事` 类：
 
 ```java
-public class Colleague {
-    protected Mediator mediator;
+public class 同事 {
+    protected 中介者 中介者对象;
     // 构建方法，得到中介者对象
-    public Colleague(Mediator mediator){
-        this.mediator = mediator;
+    public 同事(中介者 中介者对象){
+        this.中介者对象 = 中介者对象;
     }
 }
 ```
 
-`ConcreteColleague` 类：
+`具体同事` 类：
 
 ```java
-public class ConcreteColleague1 extends Colleague {
-    public ConcreteColleague1(Mediator mediator) {
-        super(mediator);
+public class 具体同事1 extends 同事 {
+    public 具体同事1(中介者 中介者对象) {
+        super(中介者对象);
     }
-    public void send(String message){
-        this.mediator.send(message,this);
+    public void 发送消息(String 消息内容){
+        this.中介者对象.发送消息(消息内容,this);
     }
-    public void notify(String message){
-        System.out.println("同事1得到信息:"+message);
+    public void 通知(String 消息内容){
+        System.out.println("同事1得到信息:"+消息内容);
     }
 }
 
-public class ConcreteColleague2 extends Colleague {
-    public ConcreteColleague2(Mediator mediator)
+public class 具体同事2 extends 同事 {
+    public 具体同事2(中介者 中介者对象)
     {
-        super(mediator);
+        super(中介者对象);
     }
-    public void send(String message)
+    public void 发送消息(String 消息内容)
     {
-        this.mediator.send(message,this);
+        this.中介者对象.发送消息(消息内容,this);
     }
-    public void notify(String message)
+    public void 通知(String 消息内容)
     {
-        System.out.println("同事2得到信息:"+message);
+        System.out.println("同事2得到信息:"+消息内容);
     }
 }
 ```
 
-`Main` 方法：
+`主类` 方法：
 
 ```java
-public class main {
+public class 主类 {
     public static void main(String[] args){
-        ConcreteMediator m =new ConcreteMediator();
-        ConcreteColleague1 c1 = new ConcreteColleague1(m);
-        ConcreteColleague2 c2 = new ConcreteColleague2(m);
-        m.setColleague1(c1);
-        m.setColleague2(c2);
-        c1.send("吃过饭了吗？");
-        c2.send("没有呢，你打算请客？");
+        具体中介者 中介者对象 =new 具体中介者();
+        具体同事1 同事对象1 = new 具体同事1(中介者对象);
+        具体同事2 同事对象2 = new 具体同事2(中介者对象);
+        中介者对象.设置同事1(同事对象1);
+        中介者对象.设置同事2(同事对象2);
+        同事对象1.发送消息("吃过饭了吗？");
+        同事对象2.发送消息("没有呢，你打算请客？");
     }
 }
 ```

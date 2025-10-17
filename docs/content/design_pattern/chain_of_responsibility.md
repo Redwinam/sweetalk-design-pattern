@@ -20,154 +20,154 @@
 
 将公司管理者的类别变成管理者的子类，可以通过多态性来化解分支带来的僵化。然后通过不同管理者之间建立管理关系实现请求的传递，使得请求的发送者和接收者解耦，可以让各服务模块更加清晰。处理者负责处理请求，客户只需要将请求发送到职责链，无需关心具体的处理细节。
 
-Handler(请求类)：用于定义一个处理请示的接口。
+处理者（处理者）：用于定义一个处理请示的接口。
 
-ConcreteHandler(具体处理者类)：处理它所负责的请求，可访问它的后继者，如果能够处理就处理，否则就将请求转发给它的后继者。
+具体处理者（具体处理者）：处理它所负责的请求，可访问它的后继者，如果能够处理就处理，否则就将请求转发给它的后继者。
 
 ### 代码实现
 
-`Request` 类：
+`请求` 类：
 
 ```java
-public class Request {
-    private String requestType;
-    private String requestContent;
-    private int number;
+public class 请求 {
+    private String 请求类型;
+    private String 请求内容;
+    private int 数量;
 
-    public String getRequestType() {
-        return requestType;
+    public String 获取请求类型() {
+        return 请求类型;
     }
 
-    public void setRequestType(String requestType) {
-        this.requestType = requestType;
+    public void 设置请求类型(String 请求类型) {
+        this.请求类型 = 请求类型;
     }
 
-    public String getRequestContent() {
-        return requestContent;
+    public String 获取请求内容() {
+        return 请求内容;
     }
 
-    public void setRequestContent(String requestContent) {
-        this.requestContent = requestContent;
+    public void 设置请求内容(String 请求内容) {
+        this.请求内容 = 请求内容;
     }
 
-    public int getNumber() {
-        return number;
+    public int 获取数量() {
+        return 数量;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void 设置数量(int 数量) {
+        this.数量 = 数量;
     }
 }
 ```
 
-`Manager` 类：
+`管理者` 类：
 
 ```java
-public abstract class Manager {
-    protected String name;
-    protected Manager superior;
+public abstract class 管理者 {
+    protected String 姓名;
+    protected 管理者 上级;
 
-    protected Manager(String name) {
-        this.name = name;
+    protected 管理者(String 姓名) {
+        this.姓名 = 姓名;
     }
 
-    public void SetSuperior(Manager superior) {
-        this.superior = superior;
+    public void 设置上级(管理者 上级) {
+        this.上级 = 上级;
     }
 
-    public abstract void requestApplications(Request request);
+    public abstract void 处理请求(请求 请求对象);
 }
 ```
 
-`ConcreteManager` 类：
+`具体管理者` 类：
 
 ```java
-public class GeneralManager extends Manager {
-    protected GeneralManager(String name) {
-        super(name);
+public class 总经理 extends 管理者 {
+    protected 总经理(String 姓名) {
+        super(姓名);
     }
 
     @Override
-    public void requestApplications(Request request) {
-        if(request.getRequestType() == "请假"){
-            System.out.println(name + "：" + request.getRequestContent() + " 数量" + request.getNumber() + " 被批准" );
-        }else if(request.getRequestType() == "加薪" && request.getNumber() <= 500) {
-            System.out.println(name + "：" + request.getRequestContent() + " 数量" + request.getNumber() + " 被批准" );
+    public void 处理请求(请求 请求对象) {
+        if(请求对象.获取请求类型() == "请假"){
+            System.out.println(姓名 + "：" + 请求对象.获取请求内容() + " 数量" + 请求对象.获取数量() + " 被批准" );
+        }else if(请求对象.获取请求类型() == "加薪" && 请求对象.获取数量() <= 500) {
+            System.out.println(姓名 + "：" + 请求对象.获取请求内容() + " 数量" + 请求对象.获取数量() + " 被批准" );
         }else {
-            System.out.println(name + "：" + request.getRequestContent() + " 数量" + request.getNumber() + " 再说吧" );
+            System.out.println(姓名 + "：" + 请求对象.获取请求内容() + " 数量" + 请求对象.获取数量() + " 再说吧" );
         }
     }
 }
 
-public class MajorDemo extends Manager {
-    protected MajorDemo(String name) {
-        super(name);
+public class 总监 extends 管理者 {
+    protected 总监(String 姓名) {
+        super(姓名);
     }
 
     @Override
-    public void requestApplications(Request request) {
-        if(request.getRequestType() == "请假" && request.getNumber() <= 5) {
-            System.out.println(name + "：" + request.getRequestContent() + " 数量" + request.getNumber() + " 被批准" );
+    public void 处理请求(请求 请求对象) {
+        if(请求对象.获取请求类型() == "请假" && 请求对象.获取数量() <= 5) {
+            System.out.println(姓名 + "：" + 请求对象.获取请求内容() + " 数量" + 请求对象.获取数量() + " 被批准" );
         }else {
-            if(superior != null) {
-                superior.requestApplications(request);
+            if(上级 != null) {
+                上级.处理请求(请求对象);
             }
         }
     }
 }
 
-public class CommonManager extends Manager {
-    protected CommonManager(String name) {
-        super(name);
+public class 普通经理 extends 管理者 {
+    protected 普通经理(String 姓名) {
+        super(姓名);
     }
 
     @Override
-    public void requestApplications(Request request) {
-        if(request.getRequestType() == "请假" && request.getNumber() <= 2) {
-            System.out.println(name + "：" + request.getRequestContent() + " 数量" + request.getNumber() + " 被批准" );
+    public void 处理请求(请求 请求对象) {
+        if(请求对象.获取请求类型() == "请假" && 请求对象.获取数量() <= 2) {
+            System.out.println(姓名 + "：" + 请求对象.获取请求内容() + " 数量" + 请求对象.获取数量() + " 被批准" );
         }else {
-            if(superior != null) {
-                superior.requestApplications(request);
+            if(上级 != null) {
+                上级.处理请求(请求对象);
             }
         }
     }
 }
 ```
 
-`Main` 方法：
+`主类` 方法：
 
 ```java
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        CommonManager jinli = new CommonManager("金利");
-        MajorDemo zongjian = new MajorDemo("宗剑");
-        GeneralManager zhongjingli = new GeneralManager("钟精励");
-        jinli.SetSuperior(zongjian);
-        zongjian.SetSuperior(zhongjingli);
+        普通经理 普通经理 = new 普通经理("金利");
+        总监 总监 = new 总监("宗剑");
+        总经理 总经理 = new 总经理("钟精励");
+        普通经理.设置上级(总监);
+        总监.设置上级(总经理);
 
-        Request request = new Request();
-        request.setRequestType("请假");
-        request.setRequestContent("小菜请假");
-        request.setNumber(1);
-        jinli.requestApplications(request);
+        请求 请求对象 = new 请求();
+        请求对象.设置请求类型("请假");
+        请求对象.设置请求内容("小菜请假");
+        请求对象.设置数量(1);
+        普通经理.处理请求(请求对象);
 
-        Request request2 = new Request();
-        request2.setRequestType("请假");
-        request2.setRequestContent("小菜请假");
-        request2.setNumber(4);
-        jinli.requestApplications(request2);
+        请求 请求对象2 = new 请求();
+        请求对象2.设置请求类型("请假");
+        请求对象2.设置请求内容("小菜请假");
+        请求对象2.设置数量(4);
+        普通经理.处理请求(请求对象2);
 
-        Request request3 = new Request();
-        request3.setRequestType("加薪");
-        request3.setRequestContent("小菜请求加薪");
-        request3.setNumber(500);
-        jinli.requestApplications(request3);
+        请求 请求对象3 = new 请求();
+        请求对象3.设置请求类型("加薪");
+        请求对象3.设置请求内容("小菜请求加薪");
+        请求对象3.设置数量(500);
+        普通经理.处理请求(请求对象3);
 
-        Request request4 = new Request();
-        request4.setRequestType("加薪");
-        request4.setRequestContent("小菜请求加薪");
-        request4.setNumber(1000);
-        jinli.requestApplications(request4);
+        请求 请求对象4 = new 请求();
+        请求对象4.设置请求类型("加薪");
+        请求对象4.设置请求内容("小菜请求加薪");
+        请求对象4.设置数量(1000);
+        普通经理.处理请求(请求对象4);
     }
 }
 ```

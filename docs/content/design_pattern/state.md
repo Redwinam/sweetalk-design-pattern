@@ -37,79 +37,79 @@
 
 ### 代码实现
 
-`State` 类：
+`状态` 类：
 
 ```java
-public abstract class State {
-    public abstract void writeProgram(Work w);
+public abstract class 状态 {
+    public abstract void 写程序(工作 w);
 }
 ```
 
-`ConcreteState` 类：
+`具体状态` 类：
 
 ```java
-public class ForenoonState extends State {
+public class 上午状态 extends 状态 {
     @Override
-    public void writeProgram(Work w) {
-        if(w.getHour() < 12) {
-            System.out.println("当前时间：" + w.getHour() + "点 上午工作，精神百倍");
+    public void 写程序(工作 w) {
+        if(w.获取小时() < 12) {
+            System.out.println("当前时间：" + w.获取小时() + "点 上午工作，精神百倍");
         }else {
-            w.setState(new NoonState());
-            w.writeProgram();
+            w.设置状态(new 中午状态());
+            w.写程序();
         }
     }
 }
 
-public class NoonState extends State {
+public class 中午状态 extends 状态 {
     @Override
-    public void writeProgram(Work w) {
-        if(w.getHour() < 13) {
-            System.out.println("当前时间：" + w.getHour() + "点 饿了，午饭；犯困，午休");
+    public void 写程序(工作 w) {
+        if(w.获取小时() < 13) {
+            System.out.println("当前时间：" + w.获取小时() + "点 饿了，午饭；犯困，午休");
         }else {
-            w.setState(new AfternoonState());
-            w.writeProgram();
+            w.设置状态(new 下午状态());
+            w.写程序();
         }
     }
 }
 
-public class AfternoonState extends State {
+public class 下午状态 extends 状态 {
     @Override
-    public void writeProgram(Work w) {
-        if(w.getHour() < 17){
-            System.out.println("当前时间 " + w.getHour() +  "点 下午状态还不错，继续努力");
+    public void 写程序(工作 w) {
+        if(w.获取小时() < 17){
+            System.out.println("当前时间 " + w.获取小时() +  "点 下午状态还不错，继续努力");
         }else {
-            w.setState(new EveningState());
-            w.writeProgram();
+            w.设置状态(new 晚上状态());
+            w.写程序();
         }
     }
 }
 
-public class RestState extends State {
+public class 休息状态 extends 状态 {
     @Override
-    public void writeProgram(Work w) {
-        System.out.println("当前时间：" + w.getHour() + "点 下班回家了");
+    public void 写程序(工作 w) {
+        System.out.println("当前时间：" + w.获取小时() + "点 下班回家了");
     }
 }
 
-public class SleepingState extends State {
+public class 睡觉状态 extends 状态 {
     @Override
-    public void writeProgram(Work w) {
-        System.out.println("当前时间：" + w.getHour() + "点 不行了，睡着了。");
+    public void 写程序(工作 w) {
+        System.out.println("当前时间：" + w.获取小时() + "点 不行了，睡着了。");
     }
 }
 
-public class EveningState extends State {
+public class 晚上状态 extends 状态 {
     @Override
-    public void writeProgram(Work w) {
-         if(w.isFinish()) {
-             w.setState(new RestState());
-             w.writeProgram();
+    public void 写程序(工作 w) {
+         if(w.是否完成()) {
+             w.设置状态(new 休息状态());
+             w.写程序();
          }else {
-             if(w.getHour() < 21) {
-                 System.out.println("当前时间：" + w.getHour() + "点 加班哦，疲累之极");
+             if(w.获取小时() < 21) {
+                 System.out.println("当前时间：" + w.获取小时() + "点 加班哦，疲累之极");
              }else {
-                 w.setState(new SleepingState());
-                 w.writeProgram();
+                 w.设置状态(new 睡觉状态());
+                 w.写程序();
              }
          }
     }
@@ -118,74 +118,74 @@ public class EveningState extends State {
 
 ```
 
-`Context` 类：
+`上下文` 类：
 
 ```java
-public class Work {
-    private State current;
+public class 工作 {
+    private 状态 当前状态;
 
-    public Work() {
-        current = new ForenoonState();
-    }
-
-    private int hour;
-    public int getHour() {
-        return hour;
-    }
-    public void setHour(int hour) {
-        this.hour = hour;
+    public 工作() {
+        当前状态 = new 上午状态();
     }
 
-    private boolean finish = false;
-    public boolean isFinish() {
-        return finish;
+    private int 小时;
+    public int 获取小时() {
+        return 小时;
     }
-    public void setFinish(boolean finish) {
-        this.finish = finish;
-    }
-
-    public void setState(State s) {
-        current = s;
+    public void 设置小时(int 小时) {
+        this.小时 = 小时;
     }
 
-    public void writeProgram() {
-        current.writeProgram(this);
+    private boolean 完成 = false;
+    public boolean 是否完成() {
+        return 完成;
+    }
+    public void 设置完成(boolean 完成) {
+        this.完成 = 完成;
+    }
+
+    public void 设置状态(状态 s) {
+        当前状态 = s;
+    }
+
+    public void 写程序() {
+        当前状态.写程序(this);
     }
 }
 ```
 
-`Main` 方法：
+`主类` 方法：
 
 ```java
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        Work emergencyProjects = new Work();
-        emergencyProjects.setHour(9);
-        emergencyProjects.writeProgram();
+        工作 紧急项目 = new 工作();
+        紧急项目.设置小时(9);
+        紧急项目.写程序();
 
-        emergencyProjects.setHour(10);
-        emergencyProjects.writeProgram();
+        紧急项目.设置小时(10);
+        紧急项目.写程序();
 
-        emergencyProjects.setHour(12);
-        emergencyProjects.writeProgram();
+        紧急项目.设置小时(12);
+        紧急项目.写程序();
 
-        emergencyProjects.setHour(13);
-        emergencyProjects.writeProgram();
+        紧急项目.设置小时(13);
+        紧急项目.写程序();
 
-        emergencyProjects.setHour(14);
-        emergencyProjects.writeProgram();
+        紧急项目.设置小时(14);
+        紧急项目.写程序();
 
-        emergencyProjects.setHour(17);
-        emergencyProjects.writeProgram();
+        紧急项目.设置小时(17);
+        紧急项目.写程序();
 
-        emergencyProjects.setFinish(false);
-        emergencyProjects.writeProgram();
+        紧急项目.设置完成(false);
+        紧急项目.写程序();
 
-        emergencyProjects.setHour(19);
-        emergencyProjects.writeProgram();
+        紧急项目.设置小时(19);
+        紧急项目.写程序();
 
-        emergencyProjects.setHour(22);
-        emergencyProjects.writeProgram();
+        紧急项目.设置小时(22);
+        紧急项目.写程序();
     }
 }
 ```
@@ -208,9 +208,9 @@ public class Main {
 
 ![](img/state/state.jpeg)
 
-- State：抽象状态类，定义一个接口用来封装与 Context 的一个特定状态相关的行为。
-- ConcreteState 类：具体状态类，每个子类实现一个与 Context 一个状态相关的行为。
-- Context 类：维护一个 ConcreteState 子类的实例，定义当前状态。
+- 状态：抽象状态类，定义一个接口用来封装与 上下文 的一个特定状态相关的行为。
+- 具体状态 类：具体状态类，每个子类实现一个与 上下文 一个状态相关的行为。
+- 上下文 类：维护一个 具体状态 子类的实例，定义当前状态。
 
 ## 模式评价
 

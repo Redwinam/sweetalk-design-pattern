@@ -40,65 +40,65 @@
 
 *此处我们使用Java语言来实现这一方案，C#语言实现可见原书原版，本项目的所有语言实现可见本项目Github仓库，其中包括：[C++](https://github.com/datawhalechina/sweetalk-design-pattern/tree/main/src/design_patterns/cpp/decorator/)，[Java](https://github.com/datawhalechina/sweetalk-design-pattern/tree/main/src/design_patterns/java/decorator/example)，[python](https://github.com/datawhalechina/sweetalk-design-pattern/tree/main/src/design_patterns/python/decorator/DecoratorFinery.py)，读者可按需参阅。*
 
-定义`Person`类，相当于`ConcreteComponent`。
+定义`人物`类，相当于`ConcreteComponent`。
 
 ```Java
-public class Person {
-    public Person() {}
+public class 人物 {
+    public 人物() {}
 
-    private String name;
-    public Person(String name) {
-        this.name = name;
+    private String 姓名;
+    public 人物(String 姓名) {
+        this.姓名 = 姓名;
     }
 
-    public void show() {
-        System.out.println("装扮的" + this.name);
+    public void 展示() {
+        System.out.println("装扮的" + this.姓名);
     }
 }
 ```
 
-定义`Finery`类，相当于`Decorator`。
+定义`服饰`类，相当于`Decorator`。
 
 ```Java
-public class Finery extends Person {
-    protected Person component;
+public class 服饰 extends 人物 {
+    protected 人物 组件;
 
-    public void decorate(Person component) {
-        this.component = component;
+    public void 装饰(人物 组件) {
+        this.组件 = 组件;
     }
 
     @Override
-    public void show() {
-        if(component != null) {
-            component.show();
+    public void 展示() {
+        if(组件 != null) {
+            组件.展示();
         }
     }
 }
 ```
 
-具体的服饰类，相当于`ConcreteDecorator`，这里以Tshirts、Sneakers、BigTrouser为例，其余类类似，代码省略。
+具体的服饰类，相当于`ConcreteDecorator`，这里以T恤类、运动鞋类、跨裤类为例，其余类类似，代码省略。
 ```Java
-public class TShirts extends Finery{
+public class T恤类 extends 服饰{
     @Override
-    public void show() {
+    public void 展示() {
         System.out.println("大T恤");
-        super.show();
+        super.展示();
     }
 }
 
-public class Sneakers extends Finery{
+public class 运动鞋类 extends 服饰{
     @Override
-    public void show() {
+    public void 展示() {
         System.out.println("运动鞋");
-        super.show();
+        super.展示();
     }
 }
 
-public class BigTrouser extends Finery{
+public class 跨裤类 extends 服饰{
     @Override
-    public void show() {
+    public void 展示() {
         System.out.println("跨裤");
-        super.show();
+        super.展示();
     }
 }
 ```
@@ -106,19 +106,18 @@ public class BigTrouser extends Finery{
 客户端如下。
 
 ```Java
-public class DecoratorClient {
+public class 主类 {
     public static void main(String[] args) {
-        Person person = new Person("小菜");
-        System.out.println("第一种装扮:");
-
-        Sneakers sneaker = new Sneakers();
-        BigTrouser trouser = new BigTrouser();
-        TShirts tshirt = new TShirts();
+        人物 小菜 = new 人物("小菜");
+        System.out.println("第一种装扮：");
+        运动鞋类 运动鞋 = new 运动鞋类();
+        跨裤类 跨裤 = new 跨裤类();
+        T恤类 T恤 = new T恤类();
         
-        sneaker.decorate(person);
-        trouser.decorate(sneaker);
-        tshirt.decorate(trouser);
-        tshirt.show();
+        运动鞋.装饰(小菜);
+        跨裤.装饰(运动鞋);
+        T恤.装饰(跨裤);
+        T恤.展示();
     }
 }
 ```

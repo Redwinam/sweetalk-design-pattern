@@ -22,10 +22,10 @@
 
 ### 解决方案
 
-- 定义抽象类：`Player`，以及方法 `attact` 和 `defense`。
-- 实现具体类：`Forwards`、`Center` 和 `Guards` 等，并重写抽象方法。
-- 定义需要适配的类：`ForeignCenter`，他的方法和抽象类的不一样，需要适配。
-- 使用适配器：`Translator` 将需要适配的 `ForeignCenter` 转换为 `Player`。
+- 定义抽象类：`球员`，以及方法 `进攻` 和 `防守`。
+- 实现具体类：`前锋`、`中锋` 和 `后卫` 等，并重写抽象方法。
+- 定义需要适配的类：`外籍中锋`，他的方法和抽象类的不一样，需要适配。
+- 使用适配器：`翻译者` 将需要适配的 `外籍中锋` 转换为 `球员`。
 
 下面是一些注意事项：
 
@@ -33,132 +33,132 @@
 
 ### 代码实现
 
-`Target` 抽象类：
+`目标` 抽象类：
 
 ```java
-public abstract class Player {
-    protected String name;
-    public Player(String name) {
-        this.name = name;
+public abstract class 球员 {
+    protected String 姓名;
+    public 球员(String 姓名) {
+        this.姓名 = 姓名;
     }
 
-    public abstract void attack();
-    public abstract void defense();
+    public abstract void 进攻();
+    public abstract void 防守();
 }
 ```
 
-`Target` 具体类：
+`目标` 具体类：
 
 ```java
-public class Forwards extends Player {
-    public Forwards(String name) {
-        super(name);
+public class 前锋 extends 球员 {
+    public 前锋(String 姓名) {
+        super(姓名);
     }
 
     @Override
-    public void attack() {
-        System.out.println("前锋 " + name + " 进攻");
+    public void 进攻() {
+        System.out.println("前锋 " + 姓名 + " 进攻");
     }
 
     @Override
-    public void defense() {
-        System.out.println("前锋 " + name + " 防守");
+    public void 防守() {
+        System.out.println("前锋 " + 姓名 + " 防守");
     }
 }
 
-public class Center extends Player {
-    public Center(String name) {
-        super(name);
+public class 中锋 extends 球员 {
+    public 中锋(String 姓名) {
+        super(姓名);
     }
 
     @Override
-    public void attack() {
-        System.out.println("中锋 " + name + " 进攻");
+    public void 进攻() {
+        System.out.println("中锋 " + 姓名 + " 进攻");
     }
 
     @Override
-    public void defense() {
-        System.out.println("中锋 " + name + " 防守");
+    public void 防守() {
+        System.out.println("中锋 " + 姓名 + " 防守");
     }
 }
 
-public class Guards extends Player {
-    public Guards(String name) {
-        super(name);
+public class 后卫 extends 球员 {
+    public 后卫(String 姓名) {
+        super(姓名);
     }
 
     @Override
-    public void attack() {
-        System.out.println("后卫 " + name + " 进攻");
+    public void 进攻() {
+        System.out.println("后卫 " + 姓名 + " 进攻");
     }
 
     @Override
-    public void defense() {
-        System.out.println("后卫 " + name + " 防守");
-    }
-}
-```
-
-`Adaptee` 类：
-
-```java
-public class ForeignCenter {
-    private String name;
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void attack() {
-        System.out.println("外籍中锋 " + name + " 进攻");
-    }
-
-    public void defense() {
-        System.out.println("外籍中锋 " + name + " 防守");
+    public void 防守() {
+        System.out.println("后卫 " + 姓名 + " 防守");
     }
 }
 ```
 
-`Adapter` 类：
+`被适配者` 类：
 
 ```java
-public class Translator extends Player {
-    private ForeignCenter wjzf = new ForeignCenter();
-
-    public Translator(String name) {
-        super(name);
-        wjzf.setName(name);
+public class 外籍中锋 {
+    private String 姓名;
+    public String 获取姓名() {
+        return this.姓名;
     }
 
-    @Override
-    public void attack() {
-        wjzf.attack();
+    public void 设置姓名(String 姓名) {
+        this.姓名 = 姓名;
     }
 
-    @Override
-    public void defense() {
-        wjzf.defense();
+    public void 进攻() {
+        System.out.println("外籍中锋 " + 姓名 + " 进攻");
+    }
+
+    public void 防守() {
+        System.out.println("外籍中锋 " + 姓名 + " 防守");
     }
 }
 ```
 
-`Main` 方法：
+`适配器` 类：
 
 ```java
-public class Main {
+public class 翻译者 extends 球员 {
+    private 外籍中锋 wjzf = new 外籍中锋();
+
+    public 翻译者(String 姓名) {
+        super(姓名);
+        wjzf.设置姓名(姓名);
+    }
+
+    @Override
+    public void 进攻() {
+        wjzf.进攻();
+    }
+
+    @Override
+    public void 防守() {
+        wjzf.防守();
+    }
+}
+```
+
+`主类` 方法：
+
+```java
+public class 主类 {
     public static void main(String[] args) {
-        Player b = new Forwards("巴蒂尔");
-        b.attack();
+        球员 b = new 前锋("巴蒂尔");
+        b.进攻();
 
-        Player m = new Guards("麦克格雷迪");
-        m.attack();
+        球员 m = new 后卫("麦克格雷迪");
+        m.进攻();
 
-        Player ym = new Translator("姚明");
-        ym.attack();
-        ym.defense();
+        球员 ym = new 翻译者("姚明");
+        ym.进攻();
+        ym.防守();
     }
 }
 ```
@@ -176,9 +176,9 @@ public class Main {
 
 ![](img/adapter/adapter.jpeg)
 
-- Target：客户所期待的接口，可以是具体类、抽象类或接口。
-- Adaptee：需要适配的类。
-- Adapter：通过在内部包装一个 Adaptee 对象，把源接口转换为目标接口。
+- 目标：客户所期待的接口，可以是具体类、抽象类或接口。
+- 被适配者：需要适配的类。
+- 适配器：通过在内部包装一个 被适配者 对象，把源接口转换为目标接口。
 
 ## 模式评价
 
@@ -195,7 +195,7 @@ public class Main {
 
 适配模式优点包括：
 
-- 接口与业务逻辑解耦。Adapter 只要和 Target 对齐就行，Client 根本不关心 Adaptee 具体怎么和 Adapter 对接，它甚至不需要知道 Adaptee 的存在。
+- 接口与业务逻辑解耦。适配器 只要和 目标 对齐就行，客户端 根本不关心 被适配者 具体怎么和 适配器 对接，它甚至不需要知道 被适配者 的存在。
 - 容易扩展。
 
 适配模式缺点包括：

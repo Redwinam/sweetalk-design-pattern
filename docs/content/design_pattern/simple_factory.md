@@ -30,45 +30,45 @@
 首先定义一个抽象运算类。
 
 ```Java
-public abstract class Operation {
-    public double numberA;
-    public double numberB;
+public abstract class 运算类 {
+    public double 数字A;
+    public double 数字B;
 
-    public abstract double getResult();
+    public abstract double 获取结果();
 }
 ```
 
 定义加减乘除等运算类。
 
 ```Java
-public class OperationAdd extends Operation {
+public class 加法运算 extends 运算类 {
     @Override
-    public double getResult() {
-        return numberA + numberB;
+    public double 获取结果() {
+        return 数字A + 数字B;
     }
 }
 
-public class OperationSub extends Operation {
+public class 减法运算 extends 运算类 {
     @Override
-    public double getResult() {
-        return numberA - numberB;
+    public double 获取结果() {
+        return 数字A - 数字B;
     }
 }
 
-public class OperationMul extends Operation {
+public class 乘法运算 extends 运算类 {
     @Override
-    public double getResult() {
-        return numberA * numberB;
+    public double 获取结果() {
+        return 数字A * 数字B;
     }
 }
 
-public class OperationDiv extends Operation {
+public class 除法运算 extends 运算类 {
     @Override
-    public double getResult() {
-        if(numberB == 0){
+    public double 获取结果() {
+        if(数字B == 0){
             throw new RuntimeException("除数不能为0。");
         }
-        return numberA / numberB;
+        return 数字A / 数字B;
     }
 }
 ```
@@ -76,25 +76,25 @@ public class OperationDiv extends Operation {
 简单运算工厂类维护创造运算实例的过程。
 
 ```Java
-public class OperationFactory {
-    public static Operation createOperation(char operator) {
-        Operation operation = null;
+public class 运算工厂 {
+    public static 运算类 创建运算(char 运算符) {
+        运算类 运算对象 = null;
 
-        switch (operator) {
+        switch (运算符) {
             case '+':
-                operation = new OperationAdd();
+                运算对象 = new 加法运算();
                 break;
             case '-':
-                operation = new OperationSub();
+                运算对象 = new 减法运算();
                 break;
             case '*':
-                operation = new OperationMul();
+                运算对象 = new 乘法运算();
                 break;
             case '/':
-                operation = new OperationDiv();
+                运算对象 = new 除法运算();
                 break;
         }
-        return operation;
+        return 运算对象;
     }  
 }
 ```
@@ -102,17 +102,17 @@ public class OperationFactory {
 客户端如下。
 
 ```Java
-public class Calculator {
+public class 计算器 {
     public static void main(String[] args) {
-        Operation operation;
-        char operator;
+        运算类 运算对象;
+        char 运算符;
     
-        operator = '+';
-        operation = OperationFactory.createOperation(operator);
-        operation.numberA = 1;
-        operation.numberB = 2;
+        运算符 = '+';
+        运算对象 = 运算工厂.创建运算(运算符);
+        运算对象.数字A = 1;
+        运算对象.数字B = 2;
     
-        System.out.println(operation.getResult());
+        System.out.println(运算对象.获取结果());
     }
 }
 ```

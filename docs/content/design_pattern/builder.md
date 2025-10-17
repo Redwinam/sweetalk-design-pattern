@@ -39,168 +39,168 @@
 
 ### 代码实现
 
-`PersonBuilder` 抽象类：
+`建造者` 抽象类：
 
 ```java
 import java.awt.*;
 
-public abstract class PersonBuilder {
+public abstract class 建造者 {
     protected Graphics2D g;
-    protected Pen p;
+    protected 画笔 p;
 
-    public PersonBuilder(Graphics2D g, Pen p) {
-        g.setStroke(new BasicStroke(p.getLineWidth()));
-        g.setColor(p.getColor());
+    public 建造者(Graphics2D g, 画笔 p) {
+        g.setStroke(new BasicStroke(p.getLine宽度()));
+        g.setColor(p.get颜色());
         this.g = g;
         this.p = p;
     }
 
-    public abstract void buildHead();
-    public abstract void buildBody();
-    public abstract void buildArmLeft();
-    public abstract void buildArmRight();
-    public abstract void buildLegLeft();
-    public abstract void buildLegRight();
+    public abstract void 建造头();
+    public abstract void 建造身体();
+    public abstract void 建造左手();
+    public abstract void 建造右手();
+    public abstract void 建造左腿();
+    public abstract void 建造右腿();
 }
 ```
 
-`PersonFatBuilder` 具体类：
+`胖人建造者` 具体类：
 
 ```java
 import java.awt.*;
 
-public class PersonFatBuilder extends PersonBuilder {
-    public PersonFatBuilder(Graphics2D g, Pen p) {
+public class 胖人建造者 extends 建造者 {
+    public 胖人建造者(Graphics2D g, 画笔 p) {
         super(g, p);
     }
 
     @Override
-    public void buildHead() {
+    public void 建造头() {
         g.drawOval(200, 70, 30, 30);
     }
 
     @Override
-    public void buildBody() {
+    public void 建造身体() {
         g.drawRect(185, 100, 60, 30);
     }
 
     @Override
-    public void buildArmLeft() {
+    public void 建造左手() {
         g.drawLine(205, 100, 175, 110);
     }
 
     @Override
-    public void buildArmRight() {
+    public void 建造右手() {
         g.drawLine(225, 100, 250, 110);
     }
 
     @Override
-    public void buildLegLeft() {
+    public void 建造左腿() {
         g.drawLine(205, 130, 175, 150);
     }
 
     @Override
-    public void buildLegRight() {
+    public void 建造右腿() {
         g.drawLine(225, 130, 250, 150);
     }
 }
 ```
 
-`PersonThinBuilder` 具体类：
+`瘦人建造者` 具体类：
 
 ```java
 import java.awt.*;
 
-public class PersonThinBuilder extends PersonBuilder {
-    public PersonThinBuilder(Graphics2D g, Pen p) {
+public class 瘦人建造者 extends 建造者 {
+    public 瘦人建造者(Graphics2D g, 画笔 p) {
         super(g, p);
     }
 
     @Override
-    public void buildHead() {
+    public void 建造头() {
         g.drawOval(50, 20, 30, 30);
     }
 
     @Override
-    public void buildBody() {
+    public void 建造身体() {
         g.drawRect(60, 50, 10, 50);
     }
 
     @Override
-    public void buildArmLeft() {
+    public void 建造左手() {
         g.drawLine(60, 50, 40, 100);
     }
 
     @Override
-    public void buildArmRight() {
+    public void 建造右手() {
         g.drawLine(70, 50, 90, 100);
     }
 
     @Override
-    public void buildLegLeft() {
+    public void 建造左腿() {
         g.drawLine(60, 100, 45, 150);
     }
 
     @Override
-    public void buildLegRight() {
+    public void 建造右腿() {
         g.drawLine(70, 100, 85, 150);
     }
 }
 ```
 
-`PersonDirector` 类：
+`人指挥者` 类：
 
 ```java
-public class PersonDirector {
+public class 人指挥者 {
 
-    private PersonBuilder pb;
+    private 建造者 pb;
 
-    public PersonDirector(PersonBuilder pb) {
+    public 人指挥者(建造者 pb) {
         this.pb = pb;
     }
 
-    public void createPerson() {
-        pb.buildHead();
-        pb.buildBody();
-        pb.buildArmLeft();
-        pb.buildArmRight();
-        pb.buildLegLeft();
-        pb.buildLegRight();
+    public void 创建人() {
+        pb.建造头();
+        pb.建造身体();
+        pb.建造左手();
+        pb.建造右手();
+        pb.建造左腿();
+        pb.建造右腿();
     }
 }
 ```
 
-`Pen` 类：
+`画笔` 类：
 
 ```java
 import java.awt.*;
 
-public class Pen {
-    private int lineWidth;
-    private Color color;
+public class 画笔 {
+    private int 线宽;
+    private Color 颜色;
 
-    public Pen(int lineWidth, Color color) {
-        this.lineWidth = lineWidth;
-        this.color = color;
+    public 画笔(int 线宽, Color 颜色) {
+        this.线宽 = 线宽;
+        this.颜色 = 颜色;
     }
 
-    public int getLineWidth(){
-        return lineWidth;
+    public int getLine宽度(){
+        return 线宽;
     }
 
-    public Color getColor(){
-        return color;
+    public Color get颜色(){
+        return 颜色;
     }
 }
 ```
 
-`BuilderMain` 方法：
+`建造者主类` 方法：
 
 ```java
 import javax.swing.*;
 import java.awt.*;
 
-public class BuilderMain {
+public class 建造者主类 {
     public static void main(String[] args) {
         JFrame jFrame = new JFrame();
 
@@ -208,12 +208,12 @@ public class BuilderMain {
             @Override
             public void paint(Graphics graphics) {
                 super.paint(graphics);
-                PersonBuilder ptb = new PersonThinBuilder((Graphics2D) graphics, new Pen(2, Color.BLUE));
-                PersonDirector pd = new PersonDirector(ptb);
-                pd.createPerson();
-                PersonBuilder pfb = new PersonFatBuilder((Graphics2D) graphics, new Pen(3, Color.YELLOW));
-                pd = new PersonDirector(pfb);
-                pd.createPerson();
+                建造者 ptb = new 瘦人建造者((Graphics2D) graphics, new 画笔(2, Color.BLUE));
+                人指挥者 pd = new 人指挥者(ptb);
+                pd.创建人();
+                建造者 pfb = new 胖人建造者((Graphics2D) graphics, new 画笔(3, Color.YELLOW));
+                pd = new 人指挥者(pfb);
+                pd.创建人();
             }
         };
 

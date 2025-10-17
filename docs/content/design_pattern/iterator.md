@@ -20,113 +20,113 @@
 
 ### 解决方案
 
-- 首先定义抽象聚集对象：`Aggregate` 类，定义 `createIterator` 方法，用于创建一个迭代器。
-- 然后定义一个具体聚集对象：`ConcreteAggretate` 类，除了重写抽象方法外，还需定义简单的 `get`、`set`、`count` 等方法。
-- 定义抽象迭代器对象：`Iterator` 类，一般包括：`first`、`next`、`isDone` 和 `currentItem` 几个抽象方法。
-- 定义具体迭代器对象：`ConreteIterator` 类，重写抽象方法，实现对对象的迭代。
+- 首先定义抽象聚集对象：`聚集` 类，定义 `创建迭代器` 方法，用于创建一个迭代器。
+- 然后定义一个具体聚集对象：`具体聚集` 类，除了重写抽象方法外，还需定义简单的 `获取`、`设置`、`计数` 等方法。
+- 定义抽象迭代器对象：`迭代器` 类，一般包括：`第一个`、`下一个`、`是否完成` 和 `当前项目` 几个抽象方法。
+- 定义具体迭代器对象：`具体迭代器` 类，重写抽象方法，实现对对象的迭代。
 
 ### 代码实现
 
-`Aggregate` 类：
+`聚集` 类：
 
 ```java
-public abstract class Aggregate {
-    public abstract Iterator createIterator();
+public abstract class 聚集 {
+    public abstract 迭代器 创建迭代器();
 }
 ```
 
-`ConcreteAggregate` 类：
+`具体聚集` 类：
 
 ```java
-public class ConcreteAggregate extends Aggregate {
-    private List<Object> items = new ArrayList<>();
+public class 具体聚集 extends 聚集 {
+    private List<Object> 项目列表 = new ArrayList<>();
 
     @Override
-    public Iterator createIterator() {
-        return new ConcreteIterator(this);
+    public 迭代器 创建迭代器() {
+        return new 具体迭代器(this);
     }
 
-    public int Count() {
-        return items.size();
+    public int 计数() {
+        return 项目列表.size();
     }
 
-    public Object get(int index) {
-        return items.get(index);
+    public Object 获取(int 索引) {
+        return 项目列表.get(索引);
     }
 
-    public void set(int index, String value) {
-        items.add(index, value);
+    public void 设置(int 索引, String 值) {
+        项目列表.add(索引, 值);
     }
 }
 ```
 
-`Iterator` 类：
+`迭代器` 类：
 
 ```java
-public abstract class Iterator {
-    public abstract Object first();
-    public abstract Object next();
-    public abstract boolean isDone();
-    public abstract Object currentItem();
+public abstract class 迭代器 {
+    public abstract Object 第一个();
+    public abstract Object 下一个();
+    public abstract boolean 是否完成();
+    public abstract Object 当前项目();
 }
 ```
 
-`ConcreteIterator` 类：
+`具体迭代器` 类：
 
 ```java
-public class ConcreteIterator extends Iterator {
-    private ConcreteAggregate aggregate;
-    private int current = 0;
+public class 具体迭代器 extends 迭代器 {
+    private 具体聚集 聚集对象;
+    private int 当前位置 = 0;
 
-    public ConcreteIterator(ConcreteAggregate aggregate) {
-        this.aggregate = aggregate;
+    public 具体迭代器(具体聚集 聚集对象) {
+        this.聚集对象 = 聚集对象;
     }
 
     @Override
-    public Object first() {
-        return aggregate.get(0);
+    public Object 第一个() {
+        return 聚集对象.获取(0);
     }
 
     @Override
-    public Object next() {
-        Object ret = null;
-        current++;
-        if(current < aggregate.Count()) {
-            ret = aggregate.get(current);
+    public Object 下一个() {
+        Object 结果 = null;
+        当前位置++;
+        if(当前位置 < 聚集对象.计数()) {
+            结果 = 聚集对象.获取(当前位置);
         }
-        return ret;
+        return 结果;
     }
 
     @Override
-    public boolean isDone() {
-        return current >= aggregate.Count();
+    public boolean 是否完成() {
+        return 当前位置 >= 聚集对象.计数();
     }
 
     @Override
-    public Object currentItem() {
-        return aggregate.get(current);
+    public Object 当前项目() {
+        return 聚集对象.获取(当前位置);
     }
 }
 ```
 
-`Main` 方法：
+`主类` 方法：
 
 ```java
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        ConcreteAggregate a = new ConcreteAggregate();
-        a.set(0, "大鸟");
-        a.set(1,"小菜");
-        a.set(2,"行李");
-        a.set(3,"老外");
-        a.set(4,"公交内部员工");
-        a.set(5,"小偷");
+        具体聚集 聚集对象 = new 具体聚集();
+        聚集对象.设置(0, "大鸟");
+        聚集对象.设置(1,"小菜");
+        聚集对象.设置(2,"行李");
+        聚集对象.设置(3,"老外");
+        聚集对象.设置(4,"公交内部员工");
+        聚集对象.设置(5,"小偷");
 
-        Iterator i = new ConcreteIterator(a);
+        迭代器 迭代器对象 = new 具体迭代器(聚集对象);
 
-        while (!i.isDone()){
-            System.out.println(i.currentItem() + " 请买车票");
-            i.next();
+        while (!迭代器对象.是否完成()){
+            System.out.println(迭代器对象.当前项目() + " 请买车票");
+            迭代器对象.下一个();
         }
     }
 }
@@ -147,10 +147,10 @@ public class Main {
 
 ![](img/iterator/iterator.jpg)
 
-- 聚集抽象类（Aggregate）。
-- 具体聚集类（ConcreteAggregate）。
-- 迭代抽象类（Iterator）：用于定义各种行为的抽象方法，统一接口。
-- 具体迭代器类（ConcreteIterator）：继承 Iterator，实现具体行为的方法。
+- 聚集抽象类（聚集）。
+- 具体聚集类（具体聚集）。
+- 迭代抽象类（迭代器）：用于定义各种行为的抽象方法，统一接口。
+- 具体迭代器类（具体迭代器）：继承 迭代器，实现具体行为的方法。
 
 ## 模式评价
 

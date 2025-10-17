@@ -23,126 +23,126 @@
 ### 代码实现
 
 ```java
-public abstract class Person {
-    public abstract void accept(Action visitor);
+public abstract class 人 {
+    public abstract void 接受(行为 访问者);
 }
 
-public class Woman extends Person {
-    protected String name = "女人";
+public class 男人 extends 人 {
+    protected String 名称 = "男人";
 
     @Override
-    public void accept(Action visitor) {
-        visitor.getWomanConclusion(this);
-    }
-}
-
-public class Woman extends Person {
-    protected String name = "女人";
-
-    @Override
-    public void accept(Action visitor) {
-        visitor.getWomanConclusion(this);
+    public void 接受(行为 访问者) {
+        访问者.获取男人结论(this);
     }
 }
 
-public abstract class Action {
-    public abstract void getManConclusion(Man man);
-    public abstract void getWomanConclusion(Woman woman);
-}
-
-
-public class Amativeness extends Action {
-    private String name = "恋爱";
+public class 女人 extends 人 {
+    protected String 名称 = "女人";
 
     @Override
-    public void getManConclusion(Man man) {
-        System.out.println(man.name + this.name + "时，凡事不懂也要装懂。");
-    }
-
-    @Override
-    public void getWomanConclusion(Woman woman) {
-        System.out.println(woman.name + this.name + "时，遇事懂也装作不懂。");
+    public void 接受(行为 访问者) {
+        访问者.获取女人结论(this);
     }
 }
 
-public class Failing extends Action {
-    private String name = "失败";
+public abstract class 行为 {
+    public abstract void 获取男人结论(男人 男人对象);
+    public abstract void 获取女人结论(女人 女人对象);
+}
+
+
+public class 恋爱 extends 行为 {
+    private String 行为名称 = "恋爱";
 
     @Override
-    public void getManConclusion(Man man) {
-        System.out.println(man.name + this.name + "时，闷头喝酒，谁也不用劝。");
+    public void 获取男人结论(男人 男人对象) {
+        System.out.println(男人对象.名称 + this.行为名称 + "时，凡事不懂也要装懂。");
     }
 
     @Override
-    public void getWomanConclusion(Woman woman) {
-        System.out.println(woman.name + this.name + "时，眼泪汪汪，谁也劝不了。");
+    public void 获取女人结论(女人 女人对象) {
+        System.out.println(女人对象.名称 + this.行为名称 + "时，遇事懂也装作不懂。");
     }
 }
 
-public class Success extends Action {
-    private String name = "成功";
+public class 失败 extends 行为 {
+    private String 行为名称 = "失败";
 
     @Override
-    public void getManConclusion(Man man) {
-        System.out.println(man.name + this.name + "时，背后多半有一个伟大的女人。");
+    public void 获取男人结论(男人 男人对象) {
+        System.out.println(男人对象.名称 + this.行为名称 + "时，闷头喝酒，谁也不用劝。");
     }
 
     @Override
-    public void getWomanConclusion(Woman woman) {
-        System.out.println(woman.name + this.name + "时，背后大多有一个不成功的男人。");
+    public void 获取女人结论(女人 女人对象) {
+        System.out.println(女人对象.名称 + this.行为名称 + "时，眼泪汪汪，谁也劝不了。");
     }
 }
 
-public class Marriage extends Action {
-    private String name = "结婚";
+public class 成功 extends 行为 {
+    private String 行为名称 = "成功";
 
     @Override
-    public void getManConclusion(Man man) {
-        System.out.println(man.name + this.name + "时，感慨到：恋爱游戏终结时，’有妻徒刑’遥无期。" );
+    public void 获取男人结论(男人 男人对象) {
+        System.out.println(男人对象.名称 + this.行为名称 + "时，背后多半有一个伟大的女人。");
     }
 
     @Override
-    public void getWomanConclusion(Woman woman) {
-        System.out.println(woman.name + this.name + "时，欣慰曰：爱情长跑路漫漫，婚姻保险保平安。");
+    public void 获取女人结论(女人 女人对象) {
+        System.out.println(女人对象.名称 + this.行为名称 + "时，背后大多有一个不成功的男人。");
     }
 }
 
-public class ObjectStructure {
-    private List<Person> elements = new ArrayList<>();
+public class 结婚 extends 行为 {
+    private String 行为名称 = "结婚";
 
-    public void attach(Person element) {
-        elements.add(element);
+    @Override
+    public void 获取男人结论(男人 男人对象) {
+        System.out.println(男人对象.名称 + this.行为名称 + "时，感慨到：恋爱游戏终结时，'有妻徒刑'遥无期。" );
     }
 
-    public void detach(Person element) {
-        elements.remove(element);
+    @Override
+    public void 获取女人结论(女人 女人对象) {
+        System.out.println(女人对象.名称 + this.行为名称 + "时，欣慰曰：爱情长跑路漫漫，婚姻保险保平安。");
+    }
+}
+
+public class 对象结构 {
+    private List<人> 元素列表 = new ArrayList<>();
+
+    public void 附加(人 元素) {
+        元素列表.add(元素);
     }
 
-    public void display(Action visitor) {
-        for(Person e : elements){
-            e.accept(visitor);
+    public void 移除(人 元素) {
+        元素列表.remove(元素);
+    }
+
+    public void 显示(行为 访问者) {
+        for(人 元素 : 元素列表){
+            元素.接受(访问者);
         }
     }
 }
 
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        ObjectStructure o = new ObjectStructure();
+        对象结构 结构对象 = new 对象结构();
 
-        o.attach(new Man());
-        o.attach(new Woman());
+        结构对象.附加(new 男人());
+        结构对象.附加(new 女人());
 
-        Success v1 = new Success();
-        o.display(v1);
+        成功 访问者1 = new 成功();
+        结构对象.显示(访问者1);
 
-        Failing v2 = new Failing();
-        o.display(v2);
+        失败 访问者2 = new 失败();
+        结构对象.显示(访问者2);
 
-        Amativeness v3 = new Amativeness();
-        o.display(v3);
+        恋爱 访问者3 = new 恋爱();
+        结构对象.显示(访问者3);
 
-        Marriage v4 = new Marriage();
-        o.display(v4);
+        结婚 访问者4 = new 结婚();
+        结构对象.显示(访问者4);
     }
 }
 

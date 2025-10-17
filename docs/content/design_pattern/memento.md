@@ -20,137 +20,137 @@
 
 ### 解决方案
 
-- 首先需要定义一个游戏角色 `GameRole`，并定义角色方法。当然，最主要要的是保存状态 `saveState` 和恢复状态 `recoveryState` 方法。
-- 然后是游戏角色存档 `RoleStateMemento`，里面存有角色在存档时间点的所有状态。
-- 最后是角色状态管理者 `RoleStateCaretaker`，用来设置或获取对应的存档。
+- 首先需要定义一个游戏角色 `游戏角色`，并定义角色方法。当然，最主要要的是保存状态 `保存状态` 和恢复状态 `恢复状态` 方法。
+- 然后是游戏角色存档 `角色状态备忘录`，里面存有角色在存档时间点的所有状态。
+- 最后是角色状态管理者 `角色状态管理者`，用来设置或获取对应的存档。
 
 ### 代码实现
 
-`Originator` 类：
+`发起人` 类：
 
 ```java
-public class GameRole {
+public class 游戏角色 {
     // 生命力
-    private int vit;
+    private int 体力;
     // 攻击力
-    private int atk;
+    private int 攻击力;
     // 防御力
-    private int def;
+    private int 防御力;
 
-    public int getVit() {
-        return vit;
+    public int 获取体力() {
+        return 体力;
     }
-    public void setVit(int vit) {
-        this.vit = vit;
-    }
-
-    public int getAtk() {
-        return atk;
+    public void 设置体力(int 体力) {
+        this.体力 = 体力;
     }
 
-    public void setAtk(int atk) {
-        this.atk = atk;
+    public int 获取攻击力() {
+        return 攻击力;
     }
 
-    public int getDef() {
-        return def;
+    public void 设置攻击力(int 攻击力) {
+        this.攻击力 = 攻击力;
     }
 
-    public void setDef(int def) {
-        this.def = def;
+    public int 获取防御力() {
+        return 防御力;
+    }
+
+    public void 设置防御力(int 防御力) {
+        this.防御力 = 防御力;
     }
 
     // 状态显示
-    public void stateDisplay() {
+    public void 状态显示() {
         System.out.println("当前角色状态：");
-        System.out.println("体力：" + this.vit);
-        System.out.println("攻击力：" + this.atk);
-        System.out.println("防御力：" + this.def);
+        System.out.println("体力：" + this.体力);
+        System.out.println("攻击力：" + this.攻击力);
+        System.out.println("防御力：" + this.防御力);
         System.out.println();
     }
 
     // 获得初始状态
-    public void getInitState() {
-        this.vit = 100;
-        this.atk = 100;
-        this.def = 100;
+    public void 获取初始状态() {
+        this.体力 = 100;
+        this.攻击力 = 100;
+        this.防御力 = 100;
     }
 
     // 战斗
-    public void fight() {
-        this.vit = 0;
-        this.atk = 0;
-        this.def = 0;
+    public void 战斗() {
+        this.体力 = 0;
+        this.攻击力 = 0;
+        this.防御力 = 0;
     }
 
     // 保存游戏状态
-    public RoleStateMemento saveState() {
-        return new RoleStateMemento(vit, atk, def);
+    public 角色状态备忘录 保存状态() {
+        return new 角色状态备忘录(体力, 攻击力, 防御力);
     }
 
     // 恢复角色状态
-    public void recoveryState(RoleStateMemento memento) {
-        this.vit = memento.getVit();
-        this.atk = memento.getAtk();
-        this.def = memento.getDef();
+    public void 恢复状态(角色状态备忘录 备忘录) {
+        this.体力 = 备忘录.获取体力();
+        this.攻击力 = 备忘录.获取攻击力();
+        this.防御力 = 备忘录.获取防御力();
     }
 }
 ```
 
-`Memento` 类：
+`备忘录` 类：
 
 ```java
-public class RoleStateMemento {
-    private int vit;
-    private int atk;
-    private int def;
+public class 角色状态备忘录 {
+    private int 体力;
+    private int 攻击力;
+    private int 防御力;
 
-    public int getVit() {
-        return vit;
+    public int 获取体力() {
+        return 体力;
     }
 
-    public void setVit(int vit) {
-        this.vit = vit;
+    public void 设置体力(int 体力) {
+        this.体力 = 体力;
     }
 
-    public int getAtk() {
-        return atk;
+    public int 获取攻击力() {
+        return 攻击力;
     }
 
-    public void setAtk(int atk) {
-        this.atk = atk;
+    public void 设置攻击力(int 攻击力) {
+        this.攻击力 = 攻击力;
     }
 
-    public int getDef() {
-        return def;
+    public int 获取防御力() {
+        return 防御力;
     }
 
-    public void setDef(int def) {
-        this.def = def;
+    public void 设置防御力(int 防御力) {
+        this.防御力 = 防御力;
     }
 
-    public RoleStateMemento(int vit, int atk, int def) {
-        this.vit = vit;
-        this.atk = atk;
-        this.def = def;
+    public 角色状态备忘录(int 体力, int 攻击力, int 防御力) {
+        this.体力 = 体力;
+        this.攻击力 = 攻击力;
+        this.防御力 = 防御力;
     }
 
-    public RoleStateMemento() {}
+    public 角色状态备忘录() {}
 }
 ```
 
-`Careataker` 类：
+`管理者` 类：
 
 ```java
-public class RoleStateCaretaker {
-    private RoleStateMemento memento;
+public class 角色状态管理者 {
+    private 角色状态备忘录 备忘录;
 
-    public RoleStateMemento getMemento() {
-        return memento;
+    public 角色状态备忘录 获取备忘录() {
+        return 备忘录;
     }
 
-    public void setMemento(RoleStateMemento memento) {
-        this.memento = memento;
+    public void 设置备忘录(角色状态备忘录 备忘录) {
+        this.备忘录 = 备忘录;
     }
 }
 ```
@@ -158,24 +158,24 @@ public class RoleStateCaretaker {
 `Main` 方法：
 
 ```java
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
         // 大战Boss前
-        GameRole lixiaoyao = new GameRole();
-        lixiaoyao.getInitState();
-        lixiaoyao.stateDisplay();
+        游戏角色 李逍遥 = new 游戏角色();
+        李逍遥.获取初始状态();
+        李逍遥.状态显示();
 
         // 保存进度
-        RoleStateCaretaker stateAdmin = new RoleStateCaretaker();
-        stateAdmin.setMemento(lixiaoyao.saveState());
+        角色状态管理者 状态管理员 = new 角色状态管理者();
+        状态管理员.设置备忘录(李逍遥.保存状态());
 
         // 大战Boss时，损耗严重
-        lixiaoyao.fight();
-        lixiaoyao.stateDisplay();
+        李逍遥.战斗();
+        李逍遥.状态显示();
 
         // 恢复之前状态
-        lixiaoyao.recoveryState(stateAdmin.getMemento());
-        lixiaoyao.stateDisplay();
+        李逍遥.恢复状态(状态管理员.获取备忘录());
+        李逍遥.状态显示();
     }
 }
 ```
@@ -203,9 +203,9 @@ public class Main {
 
 ![](img/memento/memento.jpg)
 
-- Originator（发起人）：负责创建一个备忘录 Memento，用以记录当前时刻它的内部状态，并可使用备忘录恢复内部状态。Originator 可根据需要决定 Memento 存储 Originator 的哪些内部状态。
-- Memento（备忘录）：负责存储 Originator 对象的内部状态，并可防止 Originator 以外的其他对象访问备忘录 Memento。备忘录有两个接口，Caretaker 只能看到备忘录的窄接口，它只能将备忘录传递给其他对象。Originator 能够看到一个宽接口，允许它访问返回到先前状态所需的所有数据。
-- Caretaker（管理者）：负责保存好备忘录 Memento，不能对备忘录的内容进行操作或检查。
+- 发起人（发起人）：负责创建一个备忘录 备忘录，用以记录当前时刻它的内部状态，并可使用备忘录恢复内部状态。发起人 可根据需要决定 备忘录 存储 发起人 的哪些内部状态。
+- 备忘录（备忘录）：负责存储 发起人 对象的内部状态，并可防止 发起人 以外的其他对象访问备忘录 备忘录。备忘录有两个接口，管理者 只能看到备忘录的窄接口，它只能将备忘录传递给其他对象。发起人 能够看到一个宽接口，允许它访问返回到先前状态所需的所有数据。
+- 管理者（管理者）：负责保存好备忘录 备忘录，不能对备忘录的内容进行操作或检查。
 
 ## 模式评价
 

@@ -24,92 +24,92 @@
 
 包括以下四个角色：
 
-- Abstraction（抽象类）：用于定义抽象类的接口，其中定义了一个具有关联关系的Implementor 的对象。
-- RefinedAbstraction（扩充抽象类）：继承并实现抽象类中的接口，并在其中调用Implementor 对象的相关业务方法。
-- Implementor（实现类）：用于定义实现类的接口，提供基本的业务方法供抽象类调用，以完成复杂的操作。
-- ConcreteImplementor（具体实现类）：继承并实现 Implementor 的接口，在不同的具体实现类中提供不同的操作方法，通过向上转型的方式完成方法的调用。
+- 抽象类（抽象类）：用于定义抽象类的接口，其中定义了一个具有关联关系的实现类 的对象。
+- 扩充抽象类（扩充抽象类）：继承并实现抽象类中的接口，并在其中调用实现类 对象的相关业务方法。
+- 实现类（实现类）：用于定义实现类的接口，提供基本的业务方法供抽象类调用，以完成复杂的操作。
+- 具体实现类（具体实现类）：继承并实现 实现类 的接口，在不同的具体实现类中提供不同的操作方法，通过向上转型的方式完成方法的调用。
 
 ### 代码实现
 
-`HandsetSoft` 实现类：
+`手机软件` 实现类：
 
 ```java
-public abstract class HandsetSoft {
-    public abstract void run();
+public abstract class 手机软件 {
+    public abstract void 运行();
 }
 ```
 
-`HandsetSoft` 具体实现类：
+`手机软件` 具体实现类：
 
 ```java
-public class HandsetGame extends HandsetSoft {
+public class 手机游戏 extends 手机软件 {
     @Override
-    public void run() {
+    public void 运行() {
         System.out.println("运行手机游戏");
     }
 }
 
-public class HandsetAddressList extends HandsetSoft {
+public class 手机通讯录 extends 手机软件 {
     @Override
-    public void run() {
+    public void 运行() {
         System.out.println("运行手机通讯录");
     }
 }
 ```
 
-`HandsetBrand` 抽象类：
+`手机品牌` 抽象类：
 
 ```java
-public abstract class HandsetBrand {
-    protected HandsetSoft soft;
+public abstract class 手机品牌 {
+    protected 手机软件 软件;
 
-    public void SetHandsetSoft(HandsetSoft soft) {
-        this.soft = soft;
+    public void 设置手机软件(手机软件 软件) {
+        this.软件 = 软件;
     }
 
-    public abstract void run();
+    public abstract void 运行();
 }
 ```
 
-`HandsetBrand` 扩展抽象类：
+`手机品牌` 扩展抽象类：
 
 ```java
-public class HandsetBrandM extends HandsetBrand {
+public class 手机品牌M extends 手机品牌 {
     @Override
-    public void run() {
-        soft.run();
+    public void 运行() {
+        软件.运行();
     }
 }
 
-public class HandsetBrandN extends HandsetBrand {
+public class 手机品牌N extends 手机品牌 {
     @Override
-    public void run() {
-        soft.run();
+    public void 运行() {
+        软件.运行();
     }
 }
 ```
 
-`Main` 方法：
+`主类` 方法：
 
 ```java
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        HandsetBrand ab;
-        ab = new HandsetBrandN();
+        手机品牌 抽象品牌;
+        抽象品牌 = new 手机品牌N();
 
-        ab.SetHandsetSoft(new HandsetGame());
-        ab.run();
+        抽象品牌.设置手机软件(new 手机游戏());
+        抽象品牌.运行();
 
-        ab.SetHandsetSoft(new HandsetAddressList());
-        ab.run();
+        抽象品牌.设置手机软件(new 手机通讯录());
+        抽象品牌.运行();
 
-        ab = new HandsetBrandM();
+        抽象品牌 = new 手机品牌M();
 
-        ab.SetHandsetSoft(new HandsetGame());
-        ab.run();
+        抽象品牌.设置手机软件(new 手机游戏());
+        抽象品牌.运行();
 
-        ab.SetHandsetSoft(new HandsetAddressList());
-        ab.run();
+        抽象品牌.设置手机软件(new 手机通讯录());
+        抽象品牌.运行();
     }
 }
 ```

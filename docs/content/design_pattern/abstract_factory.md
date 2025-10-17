@@ -22,12 +22,12 @@
 
 ### 解决方案
 
-我们以 `User` 表和 `Department` 两张表为例。
+我们以 `用户` 表和 `部门` 两张表为例。
 
-- 首先需要一个 `Factory` 的接口类，定义 `createProduct` 方法：`createUser` 和 `createDepartment`。
-- 针对不同的数据库实现对应的 `ConcreteFactory`：`SqlServerFactory` 和 `AccessFactory`，然后通过重写上面的两个方法，使其可以创建对应数据库的不同表（产品）。
-- 对不同的产品创建 `Product` 的接口类：`Department` 和 `User`，定义 `insert` 和对应的 `getProduct` 方法。
-- 创建对应的 `ConcreteProduct`，并重写自己的插入方法。
+- 首先需要一个 `工厂` 的接口类，定义 `创建产品` 方法：`创建用户` 和 `创建部门`。
+- 针对不同的数据库实现对应的 `具体工厂`：`SqlServer工厂` 和 `Access工厂`，然后通过重写上面的两个方法，使其可以创建对应数据库的不同表（产品）。
+- 对不同的产品创建 `产品` 的接口类：`部门` 和 `用户`，定义 `插入` 和对应的 `获取产品` 方法。
+- 创建对应的 `具体产品`，并重写自己的插入方法。
 
 
 下面是一些注意事项：
@@ -39,130 +39,130 @@
 ### 代码实现
 
 
-`Factory` 类：
+`工厂` 类：
 
 ```java
-public interface Factory {
-    User createUser();
-    Department createDepartment();
+public interface 工厂 {
+    用户 创建用户();
+    部门 创建部门();
 }
 ```
 
-`ConcreteFactory` 类：
+`具体工厂` 类：
 
 ```java
-public class SqlServerFactory implements Factory {
+public class SqlServer工厂 implements 工厂 {
     @Override
-    public User createUser() {
-        return new SqlServerUser();
+    public 用户 创建用户() {
+        return new SqlServer用户();
     }
 
     @Override
-    public Department createDepartment() {
-        return new SqlserverDepartment();
+    public 部门 创建部门() {
+        return new Sqlserver部门();
     }
 }
 
-public class AccessFactory implements Factory {
+public class Access工厂 implements 工厂 {
     @Override
-    public User createUser() {
-        return new AccessUser();
+    public 用户 创建用户() {
+        return new Access用户();
     }
 
     @Override
-    public Department createDepartment() {
-        return new AccessDepartment();
+    public 部门 创建部门() {
+        return new Access部门();
     }
 }
 ```
 
-`Product` 类：
+`产品` 类：
 
 ```java
-public interface User {
-    void insert(User user);
-    User getUser(int id);
+public interface 用户 {
+    void 插入(用户 user);
+    用户 获取用户(int id);
 }
 
-public interface Department {
-    void Insert(Department department);
-    Department getDepartment(int id);
+public interface 部门 {
+    void 插入(部门 department);
+    部门 获取部门(int id);
 }
 ```
 
-`ConcreteProduct` 类：
+`具体产品` 类：
 
 ```java
-public class SqlServerUser implements User {
+public class SqlServer用户 implements 用户 {
     @Override
-    public void insert(User user) {
+    public void 插入(用户 user) {
         System.out.println("在SQL Server中给User表增加一条记录");
     }
 
     @Override
-    public User getUser(int id) {
+    public 用户 获取用户(int id) {
         System.out.println("在SQL Server中根据ID得到User表一条记录");
         return null;
     }
 }
 
-public class AccessUser implements User {
+public class Access用户 implements 用户 {
     @Override
-    public void insert(User user) {
+    public void 插入(用户 user) {
         System.out.println("在Access中给User表增加一条记录");
     }
 
     @Override
-    public User getUser(int id) {
+    public 用户 获取用户(int id) {
         System.out.println("在Access中根据ID得到User表一条记录");
         return null;
     }
 }
 
-public class SqlserverDepartment implements Department{
+public class Sqlserver部门 implements 部门{
     @Override
-    public void Insert(Department department) {
+    public void 插入(部门 department) {
         System.out.println("在SQL Server中给Department表增加一条记录");
     }
 
     @Override
-    public Department getDepartment(int id) {
+    public 部门 获取部门(int id) {
         System.out.println("在SQL Server中根据ID得到Department表一条记录");
         return null;
     }
 }
 
-public class AccessDepartment implements Department {
+public class Access部门 implements 部门 {
     @Override
-    public void Insert(Department department) {
+    public void 插入(部门 department) {
         System.out.println("在Access中给Department表增加一条记录");
     }
 
     @Override
-    public Department getDepartment(int id) {
+    public 部门 获取部门(int id) {
         System.out.println("在Access中根据ID得到Department表一条记录");
         return null;
     }
 }
 ```
 
-`Main` 方法：
+`主类` 方法：
 
 ```java
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        User user = new AccessUser();
-        Department dept = new AccessDepartment();
+        用户 user = new Access用户();
+        部门 dept = new Access部门();
 
-        Factory factory = new AccessFactory();
-        User iu = factory.createUser();
+        工厂 factory = new Access工厂();
+        用户 iu = factory.创建用户();
 
-        iu.insert(user);
-        iu.getUser(1);
+        iu.插入(user);
+        iu.获取用户(1);
 
-        Department department = factory.createDepartment();
-        department.Insert(dept);
-        department.getDepartment(1);
+        部门 department = factory.创建部门();
+        department.插入(dept);
+        department.获取部门(1);
     }
 }
 ```
@@ -180,10 +180,10 @@ public class Main {
 
 ![](img/abstract_factory/abstract_factory.jpeg)
 
-- AbstractFactory：抽象工厂，分别对应不同的序列（如上面不同的数据库）。
-- ConcreateFactory：抽象工厂的具体实现，不同的工厂会创建不同的产品系列。
-- AbstractProduct：抽象产品，分别有不同的实现（比如上面的 User 和 Department）。
-- ConcreteProduct：抽象产品的具体实现。
+- 抽象工厂：抽象工厂，分别对应不同的序列（如上面不同的数据库）。
+- 具体工厂：抽象工厂的具体实现，不同的工厂会创建不同的产品系列。
+- 抽象产品：抽象产品，分别有不同的实现（比如上面的 用户 和 部门）。
+- 具体产品：抽象产品的具体实现。
 
 ## 模式评价
 

@@ -31,113 +31,113 @@ Context(上下文）：包含解释器之外的全局信息。
 ### 代码实现
 
 ```java
-public abstract class Expression {
-    public void interpret(PlayContext context) {
-        if(context.getText().length() == 0) {
+public abstract class 表达式 {
+    public void 解释(演奏上下文 上下文) {
+        if(上下文.获取文本().length() == 0) {
             return;
         }else {
-            String playKey = context.getText().substring(0, 1);
-            context.setText(context.getText().substring(2));
-            double playValue = Double.parseDouble(context.getText().substring(0, context.getText().indexOf(" ")));
-            context.setText(context.getText().substring(context.getText().indexOf(" ") + 1));
+            String 演奏键 = 上下文.获取文本().substring(0, 1);
+            上下文.设置文本(上下文.获取文本().substring(2));
+            double 演奏值 = Double.parseDouble(上下文.获取文本().substring(0, 上下文.获取文本().indexOf(" ")));
+            上下文.设置文本(上下文.获取文本().substring(上下文.获取文本().indexOf(" ") + 1));
 
-            excute(playKey,playValue);
+            执行(演奏键,演奏值);
         }
     }
 
-    public abstract void excute(String key,double value);
+    public abstract void 执行(String 键,double 值);
 }
 
 
-public class Note extends Expression {
+public class 音符 extends 表达式 {
   @Override
-    public void excute(String key, double value) {
-      String note = "";
-      switch (key){
+    public void 执行(String 键, double 值) {
+      String 音符值 = "";
+      switch (键){
           case "C":
-              note = "1";
+              音符值 = "1";
               break;
           case "D":
-              note = "2";
+              音符值 = "2";
               break;
           case "E":
-              note = "3";
+              音符值 = "3";
               break;
           case "F":
-              note = "4";
+              音符值 = "4";
               break;
           case "G":
-              note = "5";
+              音符值 = "5";
               break;
           case "A":
-              note = "6";
+              音符值 = "6";
               break;
           case "B":
-              note = "7";
+              音符值 = "7";
               break;
       }
-      System.out.print(note + " ");
+      System.out.print(音符值 + " ");
     }
 }
 
-public class Scale extends Expression {
+public class 音阶 extends 表达式 {
     @Override
-    public void excute(String key, double value) {
-        String scale = "";
-        switch ((int)value){
+    public void 执行(String 键, double 值) {
+        String 音阶值 = "";
+        switch ((int)值){
             case 1:
-                scale = "低音";
+                音阶值 = "低音";
                 break;
             case 2:
-                scale = "中音";
+                音阶值 = "中音";
                 break;
             case 3:
-                scale = "高音";
+                音阶值 = "高音";
                 break;
         }
-        System.out.print(scale + " ");
+        System.out.print(音阶值 + " ");
     }
 }
 
-public class Speed extends Expression {
+public class 速度 extends 表达式 {
     @Override
-    public void excute(String key, double value) {
-        String speed;
-        if(value < 500) {
-            speed = "快速";
-        }else if (value >= 1000) {
-            speed = "慢速";
+    public void 执行(String 键, double 值) {
+        String 速度值;
+        if(值 < 500) {
+            速度值 = "快速";
+        }else if (值 >= 1000) {
+            速度值 = "慢速";
         }else {
-            speed = "中速";
+            速度值 = "中速";
         }
-        System.out.print(speed + " ");
+        System.out.print(速度值 + " ");
     }
 }
 
-public class PlayContext {
-    private String text;
+public class 演奏上下文 {
+    private String 文本内容;
 
-    public String getText() {
-        return text;
+    public String 获取文本() {
+        return 文本内容;
     }
-    public void setText(String text) {
-        this.text = text;
+    public void 设置文本(String 文本内容) {
+        this.文本内容 = 文本内容;
     }
 }
 
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        PlayContext context = new PlayContext();
+        演奏上下文 上下文 = new 演奏上下文();
         System.out.println("上海滩：");
-        context.setText("O 2 E 0.5 G 0.5 A 3 E 0.5 G 0.5 D 3 E 0.5 G 0.5 A 0.5 O 3 C 1 O 2 A 0.5 G 1 C 0.5 E 0.5 D 3 ");
+        上下文.设置文本("O 2 E 0.5 G 0.5 A 3 E 0.5 G 0.5 D 3 E 0.5 G 0.5 A 0.5 O 3 C 1 O 2 A 0.5 G 1 C 0.5 E 0.5 D 3 ");
 
-        Expression expression = null;
+        表达式 表达式对象 = null;
         try {
-            while (context.getText().length() > 0) {
-                String str = context.getText().substring(0, 1);
-                switch (str){
+            while (上下文.获取文本().length() > 0) {
+                String 字符 = 上下文.获取文本().substring(0, 1);
+                switch (字符){
                     case "O":
-                        expression = new Scale();
+                        表达式对象 = new 音阶();
                         break;
                     case "C":
                     case "D":
@@ -147,26 +147,26 @@ public class Main {
                     case "A":
                     case "B":
                     case "P":
-                        expression = new Note();
+                        表达式对象 = new 音符();
                         break;
                 }
-                expression.interpret(context);
+                表达式对象.解释(上下文);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         System.out.println("\r\n上海滩：");
-        context.setText("T 500 O 2 E 0.5 G 0.5 A 3 E 0.5 G 0.5 D 3 E 0.5 G 0.5 A 0.5 O 3 C 1 O 2 A 0.5 G 1 C 0.5 E 0.5 D 3 ");
+        上下文.设置文本("T 500 O 2 E 0.5 G 0.5 A 3 E 0.5 G 0.5 D 3 E 0.5 G 0.5 A 0.5 O 3 C 1 O 2 A 0.5 G 1 C 0.5 E 0.5 D 3 ");
         try {
-            while (context.getText().length() > 0) {
-                String str = context.getText().substring(0, 1);
-                switch (str){
+            while (上下文.获取文本().length() > 0) {
+                String 字符 = 上下文.获取文本().substring(0, 1);
+                switch (字符){
                     case "O":
-                        expression = new Scale();
+                        表达式对象 = new 音阶();
                         break;
                     case "T":
-                        expression = new Speed();
+                        表达式对象 = new 速度();
                         break;
                     case "C":
                     case "D":
@@ -176,10 +176,10 @@ public class Main {
                     case "A":
                     case "B":
                     case "P":
-                        expression = new Note();
+                        表达式对象 = new 音符();
                         break;
                 }
-                expression.interpret(context);
+                表达式对象.解释(上下文);
             }
         } catch (Exception e) {
             e.printStackTrace();

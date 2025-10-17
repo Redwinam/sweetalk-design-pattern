@@ -31,75 +31,60 @@ FlyweightFactory(享元工厂)：用来创建并管理享元对象，确保合�
 ### 代码实现
 
 ```java
-public abstract class WebSite {
-    public abstract void use(User user);
+public abstract class 网站 {
+    public abstract void 使用(用户 用户对象);
 }
 
-public class ConcreteWebSite extends WebSite {
-    private String name;
-    public ConcreteWebSite(String name) {
-        this.name = name;
+public class 具体网站 extends 网站 {
+    private String 名称;
+    public 具体网站(String 名称) {
+        this.名称 = 名称;
     }
 
     @Override
-    public void use(User user) {
-        System.out.println("网站分类："+ name + " 用户：" + user.getName());
+    public void 使用(用户 用户对象) {
+        System.out.println("网站分类："+ 名称 + " 用户：" + 用户对象.获取姓名());
     }
 }
 
-public class WebSiteFactory {
-    private Map<String,WebSite> flyweights = new HashMap<>();
+public class 网站工厂 {
+    private Map<String,网站> 享元池 = new HashMap<>();
 
-    public WebSite getWebSiteCategory(String key) {
-        if(!flyweights.containsKey(key)) {
-            flyweights.put(key, new ConcreteWebSite(key));
+    public 网站 获取网站分类(String 分类键) {
+        if(!享元池.containsKey(分类键)) {
+            享元池.put(分类键, new 具体网站(分类键));
         }
-        return flyweights.get(key);
+        return 享元池.get(分类键);
     }
 
-    public int getWebSiteCount() {
-        return flyweights.size();
-    }
-}
-
-public class WebSiteFactory {
-    private Map<String,WebSite> flyweights = new HashMap<>();
-
-    public WebSite getWebSiteCategory(String key) {
-        if(!flyweights.containsKey(key)) {
-            flyweights.put(key, new ConcreteWebSite(key));
-        }
-        return flyweights.get(key);
-    }
-
-    public int getWebSiteCount() {
-        return flyweights.size();
+    public int 获取网站数量() {
+        return 享元池.size();
     }
 }
 
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        WebSiteFactory f = new WebSiteFactory();
+        网站工厂 工厂 = new 网站工厂();
 
-        WebSite fx = f.getWebSiteCategory("产品展示");
-        fx.use(new User("小菜"));
+        网站 网站对象1 = 工厂.获取网站分类("产品展示");
+        网站对象1.使用(new 用户("小菜"));
 
-        WebSite fy = f.getWebSiteCategory("产品展示");
-        fy.use(new User("大鸟"));
+        网站 网站对象2 = 工厂.获取网站分类("产品展示");
+        网站对象2.使用(new 用户("大鸟"));
 
-        WebSite fz = f.getWebSiteCategory("产品展示");
-        fz.use(new User("娇娇"));
+        网站 网站对象3 = 工厂.获取网站分类("产品展示");
+        网站对象3.使用(new 用户("娇娇"));
 
-        WebSite fl = f.getWebSiteCategory("博客");
-        fl.use(new User("老顽童"));
+        网站 网站对象4 = 工厂.获取网站分类("博客");
+        网站对象4.使用(new 用户("老顽童"));
 
-        WebSite fm = f.getWebSiteCategory("博客");
-        fm.use(new User("桃谷六仙"));
+        网站 网站对象5 = 工厂.获取网站分类("博客");
+        网站对象5.使用(new 用户("桃谷六仙"));
 
-        WebSite fn = f.getWebSiteCategory("博客");
-        fn.use(new User("南海鳄神"));
+        网站 网站对象6 = 工厂.获取网站分类("博客");
+        网站对象6.使用(new 用户("南海鳄神"));
 
-        System.out.println("得到网站分类总数为 " + f.getWebSiteCount());
+        System.out.println("得到网站分类总数为 " + 工厂.获取网站数量());
     }
 }
 

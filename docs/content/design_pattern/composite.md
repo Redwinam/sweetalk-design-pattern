@@ -20,154 +20,154 @@
 
 ### 解决方案
 
-- 首先需要一个抽象类：`Company`，可以是一个公司或部门。包括 `add`、`remove`、`display` 等方法。
-- 然后分别实现树枝节点具体公司类：`ConcreteCompany` 和树叶节点：`HrDepartment` 和 `FinanceDepartment`，并重写抽象方法。
+- 首先需要一个抽象类：`公司`，可以是一个公司或部门。包括 `添加`、`移除`、`显示` 等方法。
+- 然后分别实现树枝节点具体公司类：`具体公司` 和树叶节点：`人力资源部门` 和 `财务部门`，并重写抽象方法。
 
 ### 代码实现
 
-`Component` 类：
+`组件` 类：
 
 ```java
-public abstract class Company {
-    protected String name;
+public abstract class 公司 {
+    protected String 名称;
 
-    public Company(String name) {
-        this.name = name;
+    public 公司(String 名称) {
+        this.名称 = 名称;
     }
 
-    public abstract void add(Company c);
-    public abstract void remove(Company c);
-    public abstract void display(int depth);
-    public abstract void lineOfDuty();
+    public abstract void 添加(公司 c);
+    public abstract void 移除(公司 c);
+    public abstract void 显示(int 深度);
+    public abstract void 履行职责();
 }
 ```
 
-`Composite` 类：
+`组合` 类：
 
 ```java
-public class ConcreteCompany extends Company {
+public class 具体公司 extends 公司 {
 
-    private List<Company> children = new ArrayList<>();
+    private List<公司> 子节点 = new ArrayList<>();
 
-    public ConcreteCompany(String name) {
-        super(name);
+    public 具体公司(String 名称) {
+        super(名称);
     }
 
     @Override
-    public void add(Company c) {
-        children.add(c);
+    public void 添加(公司 c) {
+        子节点.add(c);
     }
 
     @Override
-    public void remove(Company c) {
-        children.remove(c);
+    public void 移除(公司 c) {
+        子节点.remove(c);
     }
 
     @Override
-    public void display(int depth) {
-        for(int i = 0; i < depth; i++) {
+    public void 显示(int 深度) {
+        for(int i = 0; i < 深度; i++) {
             System.out.print("-");
         }
-        System.out.println(this.name);
+        System.out.println(this.名称);
 
-        for(Company component : children) {
-            component.display(depth + 2);
+        for(公司 组件 : 子节点) {
+            组件.显示(深度 + 2);
         }
     }
 
     @Override
-    public void lineOfDuty() {
-        for(Company component : children) {
-            component.lineOfDuty();
+    public void 履行职责() {
+        for(公司 组件 : 子节点) {
+            组件.履行职责();
         }
-    }
-}
-```
-
-`Leaf` 类：
-
-```java
-public class HRDepartment extends Company {
-
-    public HRDepartment(String name) {
-        super(name);
-    }
-
-    @Override
-    public void add(Company c) {}
-
-    @Override
-    public void remove(Company c) {}
-
-    @Override
-    public void display(int depth) {
-        for(int i = 0; i < depth; i++) {
-            System.out.print("-");
-        }
-        System.out.println(this.name);
-    }
-
-    @Override
-    public void lineOfDuty() {
-        System.out.println(this.name + " 员工招聘培训管理");
-    }
-}
-
-public class FinanceDepartment extends Company {
-    public FinanceDepartment(String name) {
-        super(name);
-    }
-
-    @Override
-    public void add(Company c) {}
-
-    @Override
-    public void remove(Company c) {}
-
-    @Override
-    public void display(int depth) {
-        for(int i = 0; i < depth; i++) {
-            System.out.print("-");
-        }
-        System.out.println(this.name);
-    }
-
-    @Override
-    public void lineOfDuty() {
-        System.out.println(this.name + " 公司财务收支管理");
     }
 }
 ```
 
-`Main` 方法：
+`叶子` 类：
 
 ```java
-public class Main {
+public class 人力资源部门 extends 公司 {
+
+    public 人力资源部门(String 名称) {
+        super(名称);
+    }
+
+    @Override
+    public void 添加(公司 c) {}
+
+    @Override
+    public void 移除(公司 c) {}
+
+    @Override
+    public void 显示(int 深度) {
+        for(int i = 0; i < 深度; i++) {
+            System.out.print("-");
+        }
+        System.out.println(this.名称);
+    }
+
+    @Override
+    public void 履行职责() {
+        System.out.println(this.名称 + " 员工招聘培训管理");
+    }
+}
+
+public class 财务部门 extends 公司 {
+    public 财务部门(String 名称) {
+        super(名称);
+    }
+
+    @Override
+    public void 添加(公司 c) {}
+
+    @Override
+    public void 移除(公司 c) {}
+
+    @Override
+    public void 显示(int 深度) {
+        for(int i = 0; i < 深度; i++) {
+            System.out.print("-");
+        }
+        System.out.println(this.名称);
+    }
+
+    @Override
+    public void 履行职责() {
+        System.out.println(this.名称 + " 公司财务收支管理");
+    }
+}
+```
+
+`主类` 方法：
+
+```java
+public class 主类 {
     public static void main(String[] args) {
-        ConcreteCompany root = new ConcreteCompany("北京总公司");
-        root.add(new HRDepartment("总公司人力资源部"));
-        root.add(new FinanceDepartment("总公司财务部"));
+        具体公司 根节点 = new 具体公司("北京总公司");
+        根节点.添加(new 人力资源部门("总公司人力资源部"));
+        根节点.添加(new 财务部门("总公司财务部"));
 
-        ConcreteCompany comp = new ConcreteCompany("上海华东分公司");
-        comp.add(new HRDepartment("华东分公司人力资源部"));
-        comp.add(new FinanceDepartment("华东分公司财务部"));
-        root.add(comp);
+        具体公司 分公司 = new 具体公司("上海华东分公司");
+        分公司.添加(new 人力资源部门("华东分公司人力资源部"));
+        分公司.添加(new 财务部门("华东分公司财务部"));
+        根节点.添加(分公司);
 
-        ConcreteCompany comp1 = new ConcreteCompany("南京办事处");
-        comp1.add(new HRDepartment("南京办事处人力资源部"));
-        comp1.add(new FinanceDepartment("南京办事处财务部"));
-        root.add(comp1);
+        具体公司 办事处1 = new 具体公司("南京办事处");
+        办事处1.添加(new 人力资源部门("南京办事处人力资源部"));
+        办事处1.添加(new 财务部门("南京办事处财务部"));
+        根节点.添加(办事处1);
 
-        ConcreteCompany comp2 = new ConcreteCompany("杭州办事处");
-        comp2.add(new HRDepartment("杭州办事处人力资源部"));
-        comp2.add(new FinanceDepartment("杭州办事处财务部"));
-        root.add(comp2);
+        具体公司 办事处2 = new 具体公司("杭州办事处");
+        办事处2.添加(new 人力资源部门("杭州办事处人力资源部"));
+        办事处2.添加(new 财务部门("杭州办事处财务部"));
+        根节点.添加(办事处2);
 
         System.out.println("\n结构图：");
-        root.display(1);
+        根节点.显示(1);
 
         System.out.println("\n职责：");
-        root.lineOfDuty();
+        根节点.履行职责();
   }
 }
 ```
@@ -204,9 +204,9 @@ public class Main {
 
 ![](img/composite/composite.jpg)
 
-- Component（对象接口）：主要实现所有类共有接口的默认行为，声明一个接口，用于访问和管理 Component 的子部件。
-- Composite（枝节点）：定义枝节点行为，用于存储子部件，在 Component 接口中实现与子部件有关的操作，比如增加（Add）和删除（Remove）。
-- Leaf（叶节点）：表示叶节点对象，叶节点没有子节点。
+- 组件（对象接口）：主要实现所有类共有接口的默认行为，声明一个接口，用于访问和管理 组件 的子部件。
+- 组合（枝节点）：定义枝节点行为，用于存储子部件，在 组件 接口中实现与子部件有关的操作，比如增加（添加）和删除（移除）。
+- 叶子（叶节点）：表示叶节点对象，叶节点没有子节点。
 
 ## 模式评价
 

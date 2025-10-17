@@ -34,12 +34,12 @@
 
 股票1的具体类：
 ```java
-public class Stock1 {
-    public void sell() {
+public class 股票1 {
+    public void 卖出() {
         System.out.println("股票1卖出");
     }
 
-    public void buy() {
+    public void 买入() {
         System.out.println("股票1买入");
     }
 }
@@ -47,12 +47,12 @@ public class Stock1 {
 
 股票2的具体类：
 ```java
-public class Stock2 {
-    public void sell() {
+public class 股票2 {
+    public void 卖出() {
         System.out.println("股票2卖出");
     }
 
-    public void buy() {
+    public void 买入() {
         System.out.println("股票2买入");
     }
 }
@@ -60,12 +60,12 @@ public class Stock2 {
 
 股票3的具体类
 ```java
-public class Stock3 {
-    public void sell() {
+public class 股票3 {
+    public void 卖出() {
         System.out.println("股票3卖出");
     }
 
-    public void buy() {
+    public void 买入() {
         System.out.println("股票3买入");
     }
 }
@@ -73,12 +73,12 @@ public class Stock3 {
 
 房地产的具体类：
 ```java
-public class Realty1 {
-    public void sell() {
+public class 房地产1 {
+    public void 卖出() {
         System.out.println("房地产1卖出");
       }
 
-    public void buy() {
+    public void 买入() {
         System.out.println("房地产1买入");
     }
 }
@@ -86,12 +86,12 @@ public class Realty1 {
 
 国债1的具体类：
 ```java
-public class NationalDebt1 {
-    public void sell() {
+public class 国债1 {
+    public void 卖出() {
         System.out.println("国债1卖出");
       }
 
-    public void buy() {
+    public void 买入() {
         System.out.println("国债1买入");
     }
 }
@@ -99,46 +99,46 @@ public class NationalDebt1 {
 
 基金类：
 ```java
-public class Fund {
-    private Stock1 gu1;
-    private Stock2 gu2;
-    private Stock3 gu3;
-    private NationalDebt1 nd1;
-    private Realty1 rt1;
+public class 基金 {
+    private 股票1 股1;
+    private 股票2 股2;
+    private 股票3 股3;
+    private 国债1 债1;
+    private 房地产1 房1;
 
-    public Fund() {
-        gu1 = new Stock1();
-        gu2 = new Stock2();
-        gu3 = new Stock3();
-        nd1 = new NationalDebt1();
-        rt1 = new Realty1();
+    public 基金() {
+        股1 = new 股票1();
+        股2 = new 股票2();
+        股3 = new 股票3();
+        债1 = new 国债1();
+        房1 = new 房地产1();
     }
 
-    public void buyFund() {
-        gu1.buy();
-        gu2.buy();
-        gu3.buy();
-        nd1.buy();
-        rt1.buy();
+    public void 买入基金() {
+        股1.买入();
+        股2.买入();
+        股3.买入();
+        债1.买入();
+        房1.买入();
     }
 
-    public void sellFund() {
-        gu1.sell();
-        gu2.sell();
-        gu3.sell();
-        nd1.sell();
-        rt1.sell();
+    public void 卖出基金() {
+        股1.卖出();
+        股2.卖出();
+        股3.卖出();
+        债1.卖出();
+        房1.卖出();
     }
 }
 ```
 
 客户端方法：
 ```java
-public class FacadeMain {
+public class 外观主类 {
     public static void main(String[] args) {
-        Fund fund = new Fund();
-        fund.buyFund();
-        fund.sellFund();
+        基金 基金 = new 基金();
+        基金.买入基金();
+        基金.卖出基金();
     }
 }
 ```

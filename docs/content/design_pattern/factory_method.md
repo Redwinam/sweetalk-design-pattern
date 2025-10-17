@@ -34,54 +34,54 @@
 
 *此处我们使用Java语言来实现这一方案，C#语言实现可见原书原版，本项目的所有语言实现可见本项目Github仓库，其中包括：[C++](https://github.com/datawhalechina/sweetalk-design-pattern/tree/main/src/design_patterns/cpp/factory_method/)，[Java](https://github.com/datawhalechina/sweetalk-design-pattern/tree/main/src/design_patterns/java/factory_method/example)，[python](https://github.com/datawhalechina/sweetalk-design-pattern/tree/main/src/design_patterns/python/factory_method/LeiFengFactory.py)，读者可按需参阅。*
 
-首先创建抽象类`LetFeng`。
+首先创建抽象类`雷锋`。
 
 ```Java
-public class LeiFeng {
-    public void sweep() {
+public class 雷锋 {
+    public void 扫地() {
         System.out.println("Sweep");
     }
 
-    public void wash() {
+    public void 洗衣() {
         System.out.println("Wash");
     }
 
-    public void buyRice() {
+    public void 买米() {
         System.out.println("Buy rice");
     }
 }
 ```
 
-创建做好事的类，学雷锋的大学生`Undergraduate`，及社区志愿者`Volunteer`。
+创建做好事的类，学雷锋的大学生`大学生类`，及社区志愿者`志愿者类`。
 
 ```Java
-public class Undergraduate extends LeiFeng {
+public class 大学生类 extends 雷锋 {
     
 }
 
-public class Volunteer extends LeiFeng {
+public class 志愿者类 extends 雷锋 {
     
 }
 ```
 
-创建雷锋工厂类`IFactory`，再定义学雷锋的大学生工厂`UndergraduateFactory`和社区志愿者工厂`VolunteerFactory`
+创建雷锋工厂类`工厂接口`，再定义学雷锋的大学生工厂`大学生工厂`和社区志愿者工厂`志愿者工厂`
 
 ```Java
-public interface IFactory {
-    public LeiFeng createLeiFeng();
+public interface 工厂接口 {
+    public 雷锋 创建雷锋();
 }
 
-public class UndergraduateFactory implements IFactory {
+public class 大学生工厂 implements 工厂接口 {
     @Override
-    public LeiFeng createLeiFeng() {
-        return new Undergraduate();
+    public 雷锋 创建雷锋() {
+        return new 大学生类();
     }
 }
 
-public class VolunteerFactory implements IFactory {
+public class 志愿者工厂 implements 工厂接口 {
     @Override
-    public LeiFeng createLeiFeng() {
-        return new Volunteer();
+    public 雷锋 创建雷锋() {
+        return new 志愿者类();
     }
 }
 ```
@@ -89,18 +89,18 @@ public class VolunteerFactory implements IFactory {
 客户端如下。
 
 ```java
-public class FactoryMethodClient {
+public class 工厂方法客户端 {
     public static void main(String[] args) {
-        IFactory factory = new UndergraduateFactory();
-        LeiFeng student = factory.createLeiFeng();
-        student.buyRice();
-        student.sweep();
-        student.wash();
+        工厂接口 工厂 = new 大学生工厂();
+        雷锋 学生 = 工厂.创建雷锋();
+        学生.买米();
+        学生.扫地();
+        学生.洗衣();
 
-        LeiFeng volunteer = new VolunteerFactory().createLeiFeng();
-        volunteer.buyRice();
-        volunteer.sweep();
-        volunteer.wash();
+        雷锋 志愿者 = new 志愿者工厂().创建雷锋();
+        志愿者.买米();
+        志愿者.扫地();
+        志愿者.洗衣();
       }
 }
 ```

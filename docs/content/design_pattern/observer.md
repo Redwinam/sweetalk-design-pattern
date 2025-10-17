@@ -26,10 +26,10 @@
 
 共需要实现两个抽象类，以及它们对应的具体类。
 
-- 主题抽象类 `Subject`，定义 `attach`、`detach` 和 `inform` 方法。
-- 观察者抽象类 `Observer`，定义 `update` 方法。
-- 具体主题类 `Boss`。
-- 具体观察者类 `NBAObserver`，`StockObserver` 等，每个类重写自己的 `update` 方法。
+- 主题抽象类 `主题`，定义 `附加`、`分离` 和 `通知` 方法。
+- 观察者抽象类 `观察者`，定义 `更新` 方法。
+- 具体主题类 `老板`。
+- 具体观察者类 `NBA观察者`，`股票观察者` 等，每个类重写自己的 `更新` 方法。
 
 另外需要注意，有两种方式可以实现通知：
 
@@ -41,56 +41,56 @@
 ### 代码实现
 
 
-`Subject` 类：
+`主题` 类：
 
 ```java
-public interface Subject {
-    void attach(Observer observer);
-    void detach(Observer observer);
-    void inform();
+public interface 主题 {
+    void 附加(观察者 observer);
+    void 分离(观察者 observer);
+    void 通知();
 
     String getSubjectState();
     void setSubjectState(String action);
 }
 ```
 
-`Observer` 类：
+`观察者` 类：
 
 ```java
-public abstract class Observer {
+public abstract class 观察者 {
     protected String name;
-    protected Subject sub;
+    protected 主题 sub;
 
-    public Observer(String name, Subject sub) {
+    public 观察者(String name, 主题 sub) {
         this.name = name;
         this.sub = sub;
     }
 
-    public abstract void update();
+    public abstract void 更新();
 }
 ```
 
-`ConcreteSubject` 类：
+`具体主题` 类：
 
 ```java
-public class Boss implements Subject {
-    private List<Observer> observers = new ArrayList<>();
+public class 老板 implements 主题 {
+    private List<观察者> observers = new ArrayList<>();
     private String action;
 
     @Override
-    public void attach(Observer observer) {
+    public void 附加(观察者 observer) {
         observers.add(observer);
     }
 
     @Override
-    public void detach(Observer observer) {
+    public void 分离(观察者 observer) {
         observers.remove(observer);
     }
 
     @Override
-    public void inform() {
-        for(Observer o : observers){
-            o.update();
+    public void 通知() {
+        for(观察者 o : observers){
+            o.更新();
         }
     }
 
@@ -106,49 +106,49 @@ public class Boss implements Subject {
 }
 ```
 
-`ConcreteObserver` 类：
+`具体观察者` 类：
 
 ```java
-public class NBAObserver extends Observer {
-    public NBAObserver(String name, Subject sub) {
+public class NBA观察者 extends 观察者 {
+    public NBA观察者(String name, 主题 sub) {
         super(name, sub);
     }
 
     @Override
-    public void update() {
+    public void 更新() {
         System.out.println(sub.getSubjectState() + " " + name + " 关闭NBA直播，继续工作！");
     }
 }
 
-public class StockObserver extends Observer {
-    public StockObserver(String name, Subject sub) {
+public class 股票观察者 extends 观察者 {
+    public 股票观察者(String name, 主题 sub) {
         super(name, sub);
     }
 
     @Override
-    public void update() {
+    public void 更新() {
         System.out.println(sub.getSubjectState() + " " + name + " 关闭股票行情，继续工作！");
     }
 }
 ```
 
 
-`Main` 方法：
+`主类` 方法：
 
 ```java
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        Boss huhansan = new Boss();
+        老板 胡汉三 = new 老板();
 
-        Observer tongshi1 = new StockObserver("魏关姹", huhansan);
-        Observer tongshi2 = new NBAObserver("易管查", huhansan);
+        观察者 同事1 = new 股票观察者("魏关姹", 胡汉三);
+        观察者 同事2 = new NBA观察者("易管查", 胡汉三);
 
-        huhansan.attach(tongshi1);
-        huhansan.attach(tongshi2);
+        胡汉三.附加(同事1);
+        胡汉三.附加(同事2);
 
-        huhansan.detach(tongshi1);
-        huhansan.setSubjectState("我胡汉三回来了！");
-        huhansan.inform();
+        胡汉三.分离(同事1);
+        胡汉三.setSubjectState("我胡汉三回来了！");
+        胡汉三.通知();
     }
 }
 ```
@@ -163,10 +163,10 @@ public class Main {
 
 ![](img/observer/observer.jpeg)
 
-- Subject 类：主题或抽象通知者，一般用一个抽象类或接口实现。它把所有观察者对象的引用保存在一个聚集里，可以有任意数量的观察者。抽象主题提供可以增加或删除观察者的接口。
-- Observer 类：抽象观察者，为具体观察者定义一个抽象类或接口，得到主题的通知时更新自己。通常含有一个更新方法。
-- ConcreteSubject 类：具体主题或通知者，将有关状态存入具体观察者对象。在具体主题内部状态改变时，给所有登记过的观察者发送通知。
-- ConcreteObserver 类：具体观察者，实现抽象观察者要求的更新接口。可以保存一个指向具体主题的引用。
+- 主题类：主题或抽象通知者，一般用一个抽象类或接口实现。它把所有观察者对象的引用保存在一个聚集里，可以有任意数量的观察者。抽象主题提供可以增加或删除观察者的接口。
+- 观察者类：抽象观察者，为具体观察者定义一个抽象类或接口，得到主题的通知时更新自己。通常含有一个更新方法。
+- 具体主题类：具体主题或通知者，将有关状态存入具体观察者对象。在具体主题内部状态改变时，给所有登记过的观察者发送通知。
+- 具体观察者类：具体观察者，实现抽象观察者要求的更新接口。可以保存一个指向具体主题的引用。
 
 ## 模式评价
 
@@ -187,13 +187,13 @@ public class Main {
 
 观察者模式优点包括：
 
-- Subject 和 Observer 之间松耦合，可以轻松扩展。而且两者都可以扩展，不会对系统造成影响。
-- 支持广播通信，不需要指定接收者，而且可以随时增删 Observer。
+- 主题 和 观察者 之间松耦合，可以轻松扩展。而且两者都可以扩展，不会对系统造成影响。
+- 支持广播通信，不需要指定接收者，而且可以随时增删 观察者。
 
 观察者模式缺点包括：
 
 - 不同的订阅者可能需要不同的更新（功能），而不是所有的都一样。比如炒股的可能要切换桌面，而看 NBA 的既要切换桌面还得关掉声音。
-- Subject 依赖于 Observer 对抽象接口的实现，没有实现就无法更新。比如炒股的没有实现更新方法，那他的摸鱼行为自然就要暴露了。
+- 主题 依赖于 观察者 对抽象接口的实现，没有实现就无法更新。比如炒股的没有实现更新方法，那他的摸鱼行为自然就要暴露了。
 
 
 

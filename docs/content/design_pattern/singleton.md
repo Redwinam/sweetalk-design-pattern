@@ -42,20 +42,20 @@
 双重锁定：
 
 ```java
-public class Singleton {
-    private volatile static Singleton instance;
+public class 单例 {
+    private volatile static 单例 实例;
 
-    private Singleton() {}
+    private 单例() {}
 
-    public static Singleton getInstance() {
-        if(instance == null){
-            synchronized (Singleton.class) {
-                if(instance == null){
-                    instance = new Singleton();
+    public static 单例 获取实例() {
+        if(实例 == null){
+            synchronized (单例.class) {
+                if(实例 == null){
+                    实例 = new 单例();
                 }
             }
         }
-        return instance;
+        return 实例;
     }
 }
 ```
@@ -63,37 +63,37 @@ public class Singleton {
 静态初始化：
 
 ```java
-public class StaticSingleton {
-    private static StaticSingleton instance = new StaticSingleton();
-    private StaticSingleton() {
+public class 静态单例 {
+    private static 静态单例 实例 = new 静态单例();
+    private 静态单例() {
     }
-    public static StaticSingleton getInstance() {
-        return instance;
+    public static 静态单例 获取实例() {
+        return 实例;
     }
 }
 ```
 
-`Main` 方法：
+`主类` 方法：
 
 ```java
-public class Main {
+public class 主类 {
     public static void main(String[] args) {
-        Singleton s1 = Singleton.getInstance();
-        Singleton s2 = Singleton.getInstance();
+        单例 实例1 = 单例.获取实例();
+        单例 实例2 = 单例.获取实例();
 
-        if(s1 == s2) {
+        if(实例1 == 实例2) {
             System.out.println("两个对象是相同的实例。");
         }
 
         // 多线程
-        Set<String> instanceSet = Collections.synchronizedSet(new HashSet<>());
+        Set<String> 实例集合 = Collections.synchronizedSet(new HashSet<>());
         for (int i = 0; i < 100; i++) {
             new Thread(() -> {
-                instanceSet.add(Singleton.getInstance().toString());
+                实例集合.add(单例.获取实例().toString());
             }).start();
         }
-        for (String instance : instanceSet) {
-            System.out.println(instance);
+        for (String 实例 : 实例集合) {
+            System.out.println(实例);
         }
     }
 }
@@ -109,8 +109,8 @@ public class Main {
 
 ![](img/singleton/singleton.jpg)
 
-- 单例模式包括一个 Singleton 类，主要是定义创建实例的方法，允许访问它的唯一实例，该方法是一个静态方法，主要负责创建自己的唯一实例。
-- 单例模式因为 Singleton 类封装它的唯一实例，可以严格控制客户怎样访问它以及何时访问它。简单地说，就是对唯一实例的受控访问。
+- 单例模式包括一个 单例 类，主要是定义创建实例的方法，允许访问它的唯一实例，该方法是一个静态方法，主要负责创建自己的唯一实例。
+- 单例模式因为 单例 类封装它的唯一实例，可以严格控制客户怎样访问它以及何时访问它。简单地说，就是对唯一实例的受控访问。
 
 ## 模式评价
 

@@ -39,27 +39,27 @@
 ### 代码实现
 工作经验类：
 ```java
-public class WorkExperience implements Cloneable {
-    private String workDate;
-    private String workCompany;
+public class 工作经验 implements Cloneable {
+    private String 工作日期;
+    private String 公司名称;
 
-    public String getWorkDate() {
-        return workDate;
+    public String 获取工作日期() {
+        return 工作日期;
     }
 
-    public void setWorkDate(String workDate) {
-        this.workDate = workDate;
+    public void 设置工作日期(String 工作日期) {
+        this.工作日期 = 工作日期;
     }
 
-    public String getWorkCompany() {
-        return workCompany;
+    public String 获取公司名称() {
+        return 公司名称;
     }
 
-    public void setWorkCompany(String workCompany) {
-        this.workCompany = workCompany;
+    public void 设置公司名称(String 公司名称) {
+        this.公司名称 = 公司名称;
     }
 
-    public Object Clone() {
+    public Object 克隆() {
         try{
             return (Object)clone();
         }catch (CloneNotSupportedException ex) {
@@ -72,64 +72,64 @@ public class WorkExperience implements Cloneable {
 
 简历类
 ```java
-public class Resume implements Cloneable {
-    private String name;
-    private String sex;
-    private String age;
-    private WorkExperience work;
+public class 简历 implements Cloneable {
+    private String 姓名;
+    private String 性别;
+    private String 年龄;
+    private 工作经验 工作;
 
-    public Resume(String name) {
-        this.name = name;
-        this.work = new WorkExperience();
-    }
-
-    private Resume(WorkExperience work) {
-        this.work = (WorkExperience)work.Clone();
+    public 简历(String 姓名) {
+        this.姓名 = 姓名;
+        this.工作 = new 工作经验();
     }
 
-    public void setPersonalInfo(String sex, String age) {
-        this.sex = sex;
-        this.age = age;
+    private 简历(工作经验 工作) {
+        this.工作 = (工作经验)工作.克隆();
     }
 
-    public void SetWorkExperience(String workDate, String company) {
-        work.setWorkDate(workDate);
-        work.setWorkCompany(company);
+    public void 设置个人信息(String 性别, String 年龄) {
+        this.性别 = 性别;
+        this.年龄 = 年龄;
     }
 
-    public void display() {
-        System.out.println(this.getName() + " " + this.getSex() + " " + this.getAge());
-        System.out.println("Work experience: " + work.getWorkDate() + " " + work.getWorkCompany());
+    public void 设置工作经验(String 工作日期, String 公司) {
+        工作.设置工作日期(工作日期);
+        工作.设置公司名称(公司);
     }
 
-    public Object Clone() {
-        Resume obj = new Resume(this.work);
-        obj.name = this.name;
-        obj.sex = this.sex;
-        obj.age = this.age;
-        return obj;
+    public void 展示() {
+        System.out.println(this.获取姓名() + " " + this.获取性别() + " " + this.获取年龄());
+        System.out.println("Work experience: " + 工作.获取工作日期() + " " + 工作.获取公司名称());
     }
 
-    public String getName() {
-        return this.name;
+    public Object 克隆() {
+        简历 对象 = new 简历(this.工作);
+        对象.姓名 = this.姓名;
+        对象.性别 = this.性别;
+        对象.年龄 = this.年龄;
+        return 对象;
     }
-    public String getSex() {
-        return this.sex;
+
+    public String 获取姓名() {
+        return this.姓名;
     }
-    public String getAge() {
-        return this.age;
+    public String 获取性别() {
+        return this.性别;
+    }
+    public String 获取年龄() {
+        return this.年龄;
     }
 }
 ```
 
 客户端调用的代码：
 ```java
-public class ResumeClient {
+public class 简历客户端 {
     public static void main(String[] args) {
-        Resume a = new Resume("Big bird");
-        a.setPersonalInfo("Female", "29");
-        a.SetWorkExperience("1998-2000", "Datawhale");
-        a.display();
+        简历 a = new 简历("Big bird");
+        a.设置个人信息("Female", "29");
+        a.设置工作经验("1998-2000", "Datawhale");
+        a.展示();
     } 
 }
 ```

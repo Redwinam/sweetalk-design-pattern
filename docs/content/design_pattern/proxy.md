@@ -43,55 +43,55 @@
 首先定义一个被追求者类，是为了使故事可以完整描述，无需实现特别的功能。
 
 ```Java
-public class SchoolGirl {
-    private String name;
+public class 女学生 {
+    private String 姓名;
 
-    public SchoolGirl() {}
+    public 女学生() {}
 
-    public SchoolGirl(String name) {
-        this.name = name;
+    public 女学生(String 姓名) {
+        this.姓名 = 姓名;
     }
 
-    public String getName() {
-        return name;
+    public String 获取姓名() {
+        return 姓名;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void 设置姓名(String 姓名) {
+        this.姓名 = 姓名;
     }
 }
 ```
 
-定义送礼物的抽象类`IGiveGift`。
+定义送礼物的抽象类`送礼物`。
 
 ```java
-public interface GiveGift {
-    public void giveDolls();
-    public void giveFlowers();
-    public void giveChocolate();
+public interface 送礼物 {
+    public void 送玩具();
+    public void 送花();
+    public void 送巧克力();
 }
 ```
 
 追求者类增加了实现送礼物的接口的改动。
 
 ```Java
-public class Pursuit implements GiveGift{
-    SchoolGirl mm ;
+public class 追求者 implements 送礼物{
+    女学生 美眉 ;
 
-    public Pursuit(SchoolGirl mm) {
-        this.mm = mm;
+    public 追求者(女学生 美眉) {
+        this.美眉 = 美眉;
     }
 
-    public void giveDolls() {
-        System.out.println(mm.getName() + " give you a doll");
+    public void 送玩具() {
+        System.out.println(美眉.获取姓名() + " give you a doll");
     }
 
-    public void giveFlowers() {
-        System.out.println(mm.getName() + " give you a Flower");
+    public void 送花() {
+        System.out.println(美眉.获取姓名() + " give you a Flower");
     }
 
-    public void giveChocolate() {
-        System.out.println(mm.getName() + " give you a chocolate");
+    public void 送巧克力() {
+        System.out.println(美眉.获取姓名() + " give you a chocolate");
     }
 }
 ```
@@ -99,23 +99,23 @@ public class Pursuit implements GiveGift{
 代理类，是唯一即认识追求者，又认识被追求者的类。初始化时与追求者及被追求者建立关联，实现送礼物方法时调用追求者的同名方法。
 
 ```Java
-public class Proxy implements GiveGift {
-    Pursuit gg;
+public class 代理 implements 送礼物 {
+    追求者 哥哥;
 
-    public Proxy(SchoolGirl mm) {
-        this.gg = new Pursuit(mm);
+    public 代理(女学生 美眉) {
+        this.哥哥 = new 追求者(美眉);
     }
 
-    public void giveDolls() {
-        gg.giveDolls();
+    public void 送玩具() {
+        哥哥.送玩具();
     }
 
-    public void giveFlowers() {
-        gg.giveFlowers();
+    public void 送花() {
+        哥哥.送花();
     }
 
-    public void giveChocolate() {
-        gg.giveChocolate();
+    public void 送巧克力() {
+        哥哥.送巧克力();
     }
 }
 ```
@@ -123,16 +123,16 @@ public class Proxy implements GiveGift {
 客户端如下。
 
 ```java
-public class ProxyClient {
+public class 代理客户端 {
     public static void main(String[] args) {
-        SchoolGirl jiaojiao = new SchoolGirl();
-        jiaojiao.setName("JiaoJiao Li");
+        女学生 娇娇 = new 女学生();
+        娇娇.设置姓名("JiaoJiao Li");
 
-        Proxy proxy = new Proxy(jiaojiao);
+        代理 代理对象 = new 代理(娇娇);
 
-        proxy.giveDolls();
-        proxy.giveFlowers();
-        proxy.giveChocolate();
+        代理对象.送玩具();
+        代理对象.送花();
+        代理对象.送巧克力();
     }
 }
 ```
