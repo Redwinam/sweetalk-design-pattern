@@ -12,7 +12,7 @@
 
 ### 在线阅读地址
 
-https://datawhalechina.github.io/sweetalk-design-pattern/#/
+https://redwinam.github.io/sweetalk-design-pattern/#/
 
 ### 进度安排
 
