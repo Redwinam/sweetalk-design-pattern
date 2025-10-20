@@ -1,5 +1,9 @@
 # 建造者模式
 
+<div class="side-by-side-container">
+<div class="side-by-side-panel">
+<div class="side-by-side-header">📖 原文</div>
+<div class="side-by-side-content">
 ## 模式引入
 
 ### 问题描述
@@ -247,7 +251,7 @@ public class 建造者主类 {
 
 ### 实际应用
 
-- JAVA中的StringBuilder
+- JAVA 中的 StringBuilder
 - 去肯德基，汉堡、可乐、薯条、炸鸡翅等是不变的，而其组合是经常变化的，生成出所谓的"套餐"；
 
 ### 优点缺点
@@ -261,3 +265,96 @@ public class 建造者主类 {
 
 - 产品必须有共同点，范围有限制
 - 如内部变化复杂，会有很多的建造类
+</div>
+</div>
+
+<div class="side-by-side-panel">
+<div class="side-by-side-header">💡 解读</div>
+<div class="side-by-side-content">
+
+想象你要组装一台电脑：
+
+1. **稳定的构建过程**：无论什么配置，组装步骤都是固定的（选 CPU→ 选主板 → 选内存 → 选硬盘 → 装机箱）
+2. **变化的细节**：不同配置的具体零件不同（i7 还是 i9 处理器，16G 还是 32G 内存）
+
+建造者模式就是把"组装步骤"和"具体零件选择"分离的设计方法。
+
+### 技术本质（架构师视角）
+
+1. **构建与表现分离**：
+
+   - 构建过程（指挥者）：固定流程（先头后身体）
+   - 具体实现（建造者）：不同实现（胖/瘦人的坐标）
+
+2. **与工厂模式对比**：
+   - 工厂模式：直接生产完整对象（给你一台现成电脑）
+   - 建造者模式：分步组装对象（让你自定义每个部件）
+
+### 实际开发案例（StringBuilder）
+
+```java
+// 这就是建造者模式的典型应用
+StringBuilder builder = new StringBuilder();
+builder.append("头");  // 建造头部
+builder.append("身体"); // 建造身体
+String 小人 = builder.toString(); // 最终组装
+```
+
+### 架构设计价值
+
+1. **解耦**：将对象构造算法（指挥者）与部件实现（建造者）解耦
+2. **精细控制**：可以分步控制构造过程（比如先校验部件再组装）
+3. **扩展性**：新增产品类型只需新增建造者类（如新增"高个子建造者"）
+
+### 高级应用场景
+
+1. **复杂对象构造**：如 XML 文档生成器
+2. **多形态对象**：游戏中的角色创建系统
+3. **参数过多构造**：替代伸缩构造函数模式（telescoping constructor）
+
+### 考试注意要点
+
+1. **UML 图记忆要点**：
+
+   - 指挥者依赖抽象建造者
+   - 具体建造者继承抽象建造者
+   - 产品类独立存在
+
+2. **与抽象工厂的区别**：
+   | 维度 | 建造者模式 | 抽象工厂模式 |
+   |------------|----------------------|--------------------|
+   | 目的 | 分步构造复杂对象 | 创建产品族 |
+   | 重点 | 构造过程控制 | 产品类型扩展 |
+   | 产品复杂度 | 通常构造复杂单个对象 | 创建多个相关对象 |
+
+3. **典型考题陷阱**：
+   - 当题目出现"分步骤构建"、"相同过程不同表现"时优先考虑建造者模式
+   - 注意与模板方法模式的区别（后者是算法步骤抽象，前者是对象构造抽象）
+
+### 代码示例优化（架构师风格）
+
+```java
+// 更符合企业级实现的写法
+public interface PersonBuilder {
+    void buildHead();
+    void buildBody();
+    Person getResult(); // 明确返回产品对象
+}
+
+public class Director {
+    public Person construct(PersonBuilder builder) {
+        builder.buildHead();
+        builder.buildBody();
+        return builder.getResult(); // 返回完整产品
+    }
+}
+```
+
+建议在复习时重点理解：
+
+1. 构建过程与产品表示的分离思想
+2. 与工厂模式、原型模式等其他创建型模式的对比
+3. 在复杂对象构造场景下的优势体现
+</div>
+</div>
+</div>

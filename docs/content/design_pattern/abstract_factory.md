@@ -1,5 +1,10 @@
 # 抽象工厂模式
 
+<div class="side-by-side-container">
+<div class="side-by-side-panel">
+<div class="side-by-side-header">📖 原文</div>
+<div class="side-by-side-content">
+
 ## 模式引入
 
 ### 问题描述
@@ -29,7 +34,6 @@
 - 对不同的产品创建 `产品` 的接口类：`部门` 和 `用户`，定义 `插入` 和对应的 `获取产品` 方法。
 - 创建对应的 `具体产品`，并重写自己的插入方法。
 
-
 下面是一些注意事项：
 
 - 可以借助反射使用变量来初始化不同产品，以减少显式、固定地分支判断。
@@ -37,7 +41,6 @@
 - 一般不在开发初期使用，通常从简单工厂或工厂方法开始。
 
 ### 代码实现
-
 
 `工厂` 类：
 
@@ -212,3 +215,158 @@ public class 主类 {
 抽象工厂模式缺点包括：
 
 - 难以支持新种类的产品，因为扩展新类需要扩展工厂接口，涉及到所有子类的改变。比如我们新增了一张 Project 表，那就需要在所有地方都实现一遍。
+
+</div>
+</div>
+  
+<div class="side-by-side-panel">
+<div class="side-by-side-header">💡 解读</div>
+<div class="side-by-side-content">
+# 深入理解抽象工厂模式
+
+## 从架构师视角看抽象工厂模式
+
+作为系统架构设计师，抽象工厂模式是解决"产品族"创建问题的利器。让我们用一个更贴近实际开发的例子来理解这个模式。
+
+### 现实场景：多数据库支持系统
+
+假设你正在设计一个企业级应用，需要支持多种数据库（MySQL、Oracle、SQL Server）。每种数据库都有用户(User)和部门(Department)表的操作，但 SQL 语法可能不同。
+
+### 问题本质
+
+如果不使用设计模式，代码可能会变成这样：
+
+```java
+if(dbType == "MySQL") {
+    // MySQL特有的用户操作代码
+    // MySQL特有的部门操作代码
+} else if(dbType == "Oracle") {
+    // Oracle特有的用户操作代码
+    // Oracle特有的部门操作代码
+}
+// 每新增一个数据库就要加一个分支
+```
+
+这种设计的问题：
+
+1. 违反开闭原则（对扩展开放，对修改关闭）
+2. 代码重复度高
+3. 维护困难（每次新增数据库都要修改多处）
+
+### 抽象工厂解决方案
+
+作为架构师，我们会这样设计：
+
+1. **抽象工厂接口**：定义创建"产品族"的接口
+
+```java
+public interface DBFactory {
+    UserDAO createUserDAO();
+    DepartmentDAO createDepartmentDAO();
+}
+```
+
+2. **具体工厂实现**：每个数据库一个工厂
+
+```java
+public class MySQLFactory implements DBFactory {
+    public UserDAO createUserDAO() {
+        return new MySQLUserDAO();
+    }
+    public DepartmentDAO createDepartmentDAO() {
+        return new MySQLDepartmentDAO();
+    }
+}
+
+public class OracleFactory implements DBFactory {
+    // 类似实现Oracle特有的DAO
+}
+```
+
+3. **抽象产品接口**：定义产品行为
+
+```java
+public interface UserDAO {
+    void insert(User user);
+    User getById(int id);
+}
+
+public interface DepartmentDAO {
+    void insert(Department dept);
+    Department getById(int id);
+}
+```
+
+4. **具体产品实现**：每个数据库的产品实现
+
+```java
+public class MySQLUserDAO implements UserDAO {
+    public void insert(User user) {
+        // MySQL特有的插入逻辑
+    }
+    // 其他方法实现
+}
+
+public class OracleUserDAO implements UserDAO {
+    // Oracle特有的实现
+}
+```
+
+### 架构优势
+
+1. **松耦合**：客户端代码只依赖抽象接口，不依赖具体实现
+2. **可扩展性**：新增数据库只需新增工厂和产品类，不修改现有代码
+3. **一致性**：一个工厂创建的产品属于同一产品族（如都是 MySQL 操作）
+
+### 实际应用中的考量
+
+1. **与简单工厂结合**：可以使用简单工厂来创建具体工厂实例
+
+```java
+public class FactoryProducer {
+    public static DBFactory getFactory(String dbType) {
+        switch(dbType) {
+            case "MySQL": return new MySQLFactory();
+            case "Oracle": return new OracleFactory();
+            default: throw new IllegalArgumentException();
+        }
+    }
+}
+```
+
+2. **依赖注入**：在现代框架中，可以通过依赖注入配置具体工厂
+
+3. **性能考虑**：工厂对象通常是轻量级的，可以重复使用
+
+### 在系统架构中的位置
+
+抽象工厂模式通常出现在架构的"数据访问层"，用于隔离业务逻辑和具体的数据存储实现。它是实现"持久化无关"设计的关键模式。
+
+### 考试要点
+
+在软考高级系统架构设计师考试中，需要掌握：
+
+1. 能够识别适用抽象工厂模式的场景
+2. 理解它与简单工厂、工厂方法的区别
+3. 能够绘制对应的 UML 类图
+4. 理解它在分层架构中的作用
+5. 知道它的优缺点及适用场景
+
+### 典型考题示例
+
+**题目**：某系统需要支持多种数据库，且每种数据库都有用户管理、权限管理等模块的不同实现。随着系统发展，可能需要支持更多数据库。请说明应采用哪种设计模式，并给出简要设计。
+
+**参考答案**：
+应采用抽象工厂模式。设计要点包括：
+
+1. 定义抽象工厂接口(如 DBFactory)，包含创建各模块的方法
+2. 为每种数据库实现具体工厂(如 MySQLFactory、OracleFactory)
+3. 定义各模块的抽象产品接口(如 UserManager、AuthManager)
+4. 为每种数据库实现具体产品
+5. 使用时通过抽象工厂接口获取产品，不依赖具体实现
+
+这种设计支持新数据库的扩展而不修改现有代码，符合开闭原则。
+
+</div>
+</div>
+</div>

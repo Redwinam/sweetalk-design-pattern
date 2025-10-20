@@ -1,5 +1,10 @@
 # 观察者模式
 
+<div class="side-by-side-container">
+<div class="side-by-side-panel">
+<div class="side-by-side-header">📖 原文</div>
+<div class="side-by-side-content">
+
 ## 模式引入
 
 ### 问题描述
@@ -39,7 +44,6 @@
 我们下面用第一种方式实现。
 
 ### 代码实现
-
 
 `主题` 类：
 
@@ -132,7 +136,6 @@ public class 股票观察者 extends 观察者 {
 }
 ```
 
-
 `主类` 方法：
 
 ```java
@@ -195,5 +198,148 @@ public class 主类 {
 - 不同的订阅者可能需要不同的更新（功能），而不是所有的都一样。比如炒股的可能要切换桌面，而看 NBA 的既要切换桌面还得关掉声音。
 - 主题 依赖于 观察者 对抽象接口的实现，没有实现就无法更新。比如炒股的没有实现更新方法，那他的摸鱼行为自然就要暴露了。
 
+</div>
+</div>
+  
+<div class="side-by-side-panel">
+<div class="side-by-side-header">💡 解读</div>
+<div class="side-by-side-content">
 
+想象你是一个系统架构师，正在设计一个公司的监控系统。这个系统需要实时监控老板的行踪，并及时通知所有摸鱼的员工。观察者模式就是这个场景的完美解决方案。
 
+#### 1. 问题场景还原
+
+- **Subject（主题）**：老板（被观察的对象）
+- **Observers（观察者）**：摸鱼的员工们（需要被通知的对象）
+
+当老板的状态发生变化（比如从会议室回到办公室），所有订阅了这个消息的员工都会收到通知，并立即采取行动（关掉 NBA/股票页面）。
+
+#### 2. 模式的核心思想
+
+观察者模式建立了一种"发布-订阅"关系：
+
+- 发布者（Subject）不需要知道具体是谁订阅了它
+- 订阅者（Observer）可以自由地订阅或取消订阅
+- 当发布者状态变化时，所有订阅者都会自动收到通知
+
+#### 3. 架构师视角的技术实现
+
+##### (1) 类结构设计
+
+```java
+// 主题接口
+public interface Subject {
+    void register(Observer o);  // 注册观察者
+    void remove(Observer o);    // 移除观察者
+    void notifyObservers();     // 通知观察者
+}
+
+// 观察者接口
+public interface Observer {
+    void update(String message); // 更新方法
+}
+
+// 具体主题
+public class Boss implements Subject {
+    private List<Observer> observers = new ArrayList<>();
+    private String state;
+
+    public void setState(String state) {
+        this.state = state;
+        notifyObservers(); // 状态变化时自动通知
+    }
+    // 实现其他接口方法...
+}
+
+// 具体观察者
+public class StockObserver implements Observer {
+    public void update(String message) {
+        System.out.println("收到消息：" + message + "，立即关闭股票页面");
+    }
+}
+```
+
+##### (2) 通知机制的选择
+
+- **推模型**：Subject 主动推送完整信息（适合信息量小的情况）
+- **拉模型**：Subject 只通知变化，Observer 主动拉取所需信息（更灵活）
+
+##### (3) 线程安全考虑
+
+在实际企业级应用中，需要考虑：
+
+- 多线程环境下的观察者注册/注销
+- 通知过程中的线程安全问题
+- 避免通知过程中的死锁
+
+#### 4. 实际架构中的应用场景
+
+##### (1) 事件驱动架构
+
+```mermaid
+graph TD
+    A[订单服务] -->|发布订单创建事件| B[消息队列]
+    B --> C[库存系统]
+    B --> D[物流系统]
+    B --> E[支付系统]
+```
+
+##### (2) 微服务配置中心
+
+当配置变更时，自动通知所有订阅该配置的服务实例。
+
+##### (3) 物联网(IoT)系统
+
+传感器数据变化时，通知所有相关的数据处理服务。
+
+#### 5. 高级架构考量
+
+##### (1) 性能优化
+
+- 使用异步通知机制
+- 实现批量通知
+- 考虑观察者的优先级
+
+##### (2) 可靠性保障
+
+- 实现重试机制
+- 记录通知日志
+- 提供死信队列处理
+
+##### (3) 扩展性设计
+
+```java
+// 支持多种事件类型
+public interface EventObserver {
+    void onOrderCreated(OrderEvent event);
+    void onOrderPaid(OrderEvent event);
+    void onOrderShipped(OrderEvent event);
+}
+```
+
+#### 6. 反模式警示
+
+- **过度通知**：导致观察者被频繁唤醒
+- **循环依赖**：观察者和主题相互引用导致内存泄漏
+- **长处理链**：一个通知触发另一个通知，形成长链
+
+#### 7. 与其他模式的结合
+
+- 与**中介者模式**结合：通过中介者管理复杂的观察关系
+- 与**责任链模式**结合：观察者形成处理链
+- 与**命令模式**结合：将通知封装为可撤销的命令
+
+### 总结
+
+作为系统架构师，理解观察者模式的关键在于：
+
+1. 解耦生产者和消费者
+2. 建立灵活的事件响应机制
+3. 设计可扩展的通知系统
+4. 考虑分布式环境下的实现
+
+在实际系统设计中，观察者模式是构建松耦合、高响应性系统的利器，特别是在事件驱动架构和微服务体系中有着广泛应用。掌握好这个模式，能让你设计的系统更具弹性和可维护性。
+
+</div>
+</div>
+</div>

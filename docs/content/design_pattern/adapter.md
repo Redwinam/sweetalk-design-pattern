@@ -1,5 +1,10 @@
 # 适配器模式
 
+<div class="side-by-side-container">
+<div class="side-by-side-panel">
+<div class="side-by-side-header">📖 原文</div>
+<div class="side-by-side-content">
+
 ## 模式引入
 
 ### 问题描述
@@ -201,4 +206,110 @@ public class 主类 {
 适配模式缺点包括：
 
 - 代码复杂度增加。
+</div>
+</div>
 
+<div class="side-by-side-panel">
+<div class="side-by-side-header">💡 解读</div>
+<div class="side-by-side-content">
+好的，我将从系统架构设计师的角度，用通俗易懂的方式帮你深入理解适配器模式。
+
+1. 现实世界类比（加深理解）
+   想象你是一个系统架构师，正在设计一个跨国电商平台：
+
+- 中国商家用中文接口上传商品（attack()叫"进攻"）
+- 美国商家用英文接口上传商品（attack()叫"attack"）
+- 日本商家用日文接口上传商品（attack()叫"攻撃"）
+
+适配器就像：
+
+- 一个国际化中间件，把各国商家的商品接口统一转换成平台标准接口
+- 你不需要让所有商家修改代码，也不需要平台支持多语言
+
+2. 技术本质（核心理解）
+   适配器模式解决的是"接口不兼容但功能可用"的问题，关键在于：
+
+- 已有功能可用（外籍球员会打球）
+- 接口规范不符（方法命名/参数不同）
+- 通过中间层转换（翻译者）
+
+3. 架构设计中的应用场景
+   (1) 遗留系统整合：
+
+- 老系统：OrderService.getOrderInfo(String id)
+- 新系统：OrderQueryService.queryByOrderNo(String orderNo)
+- 适配器将新接口转换为老接口
+
+(2) 第三方服务接入：
+
+- 支付宝支付：Alipay.pay(Order order)
+- 微信支付：WXPay.unifiedOrder(Map params)
+- 用适配器统一成：PaymentService.pay(PaymentRequest request)
+
+4. 代码层面的关键点
+
+```java
+// 适配器核心实现
+public class Translator extends Player {
+    private ForeignCenter foreignPlayer; // 包含被适配对象
+
+    @Override
+    public void attack() {
+        foreignPlayer.进攻(); // 接口转换
+    }
+}
+```
+
+5. 架构师视角的注意事项
+
+- 使用时机：适合系统稳定后的接口整合，不应作为首选方案
+- 性能影响：多一层调用会有轻微性能损耗（纳秒级）
+- 过度使用：会导致系统出现大量"Wrapper"类，增加复杂度
+
+6. 考试可能涉及的考点
+
+- 与装饰器模式的区别：
+  - 适配器：改变接口
+  - 装饰器：增强功能
+- 与外观模式的区别：
+  - 适配器：一对一接口转换
+  - 外观：简化复杂子系统接口
+
+7. 实际案例
+   假设考试题目：
+   "某系统需要接入多个云存储服务（阿里云 OSS、AWS S3），各服务 API 差异较大，请设计解决方案"
+
+适配器模式答案：
+
+```
+// 统一接口
+interface CloudStorage {
+    void upload(File file);
+}
+
+// 阿里云适配器
+class AliyunAdapter implements CloudStorage {
+    private OSSClient ossClient;
+
+    public void upload(File file) {
+        ossClient.putObject(file); // 转换阿里云特定API
+    }
+}
+
+// AWS适配器
+class AwsAdapter implements CloudStorage {
+    private AmazonS3 s3Client;
+
+    public void upload(File file) {
+        s3Client.putObject(new PutObjectRequest(file)); // 转换AWS特定API
+    }
+}
+```
+
+总结记忆口诀：
+"旧物新用靠适配，接口转换不修改，
+包装调用解耦合，整合遗留最常在"
+
+</div>
+</div>
+</div>

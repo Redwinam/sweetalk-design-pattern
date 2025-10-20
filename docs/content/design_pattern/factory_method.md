@@ -1,5 +1,10 @@
 # 工厂方法模式
 
+<div class="side-by-side-container">
+<div class="side-by-side-panel">
+<div class="side-by-side-header">📖 原文</div>
+<div class="side-by-side-content">
+
 ## 问题引入
 
 ### 问题描述
@@ -160,3 +165,134 @@ public class 工厂方法客户端 {
 ## 参考资料
 
 1. 《深入设计模式》
+
+</div>
+</div>
+  
+<div class="side-by-side-panel">
+<div class="side-by-side-header">💡 解读</div>
+<div class="side-by-side-content">
+
+想象你是一家快餐连锁店的总部架构师。最初只有一种"大学生套餐"（就像学雷锋的大学生），但随着业务扩展，现在要推出"社区志愿者套餐"（新角色）。如果每次出新套餐都要修改总部中央厨房的所有设备（相当于简单工厂模式），这显然不高效。
+
+工厂方法模式就像让每个套餐类型有自己的专属厨房（工厂）：
+
+- 总部只规定"套餐必须包含汉堡、薯条、饮料"（抽象接口）
+- 大学生厨房专门生产大学生套餐
+- 志愿者厨房专门生产志愿者套餐
+- 顾客（客户端）只需选择去哪个厨房点餐
+
+### 技术本质解析
+
+1. **延迟实例化**：将对象创建的责任从父类转移到子类
+
+   - 普通创建：`雷锋 lf = new 大学生类()`
+   - 工厂方法：通过`大学生工厂.创建雷锋()`间接创建
+
+2. **开闭原则实践**：
+
+   - 扩展新类型时（如新增"企业员工"学雷锋），只需：
+     1. 创建新类`企业员工类 extends 雷锋`
+     2. 创建新工厂`企业员工工厂 implements 工厂接口`
+   - 无需修改任何现有工厂和产品类
+
+3. **架构价值**：
+   - 解耦：客户端代码只需知道`雷锋`接口，不依赖具体实现类
+   - 可扩展性：新增产品类型不影响现有系统
+   - 可维护性：创建逻辑集中管理
+
+### 架构师视角的深度思考
+
+1. **与简单工厂对比**：
+
+   ```java
+   // 简单工厂（不符合开闭原则）
+   public class 简单工厂 {
+       public static 雷锋 创建(String type) {
+           if(type.equals("大学生")) return new 大学生类();
+           else if(type.equals("志愿者")) return new 志愿者类();
+           // 新增类型需要修改这里
+       }
+   }
+
+   // 工厂方法（符合开闭原则）
+   public interface 工厂接口 {
+       雷锋 创建雷锋(); // 各子工厂自行实现
+   }
+   ```
+
+2. **IoC 容器中的应用**：
+
+   - Spring 框架的 BeanFactory 本质是工厂方法的升级版
+   - 配置`@Bean`相当于定义具体工厂
+
+3. **性能考量**：
+   - 工厂方法可能增加少量内存开销（每个产品对应一个工厂类）
+   - 但避免了复杂的条件判断，更符合单一职责原则
+
+### 实际架构中的应用场景
+
+1. **数据库访问**：
+
+   - 抽象工厂：`IDBFactory`
+   - 具体工厂：`MySQLFactory`、`OracleFactory`
+   - 产品：`Connection`、`Command`
+
+2. **跨平台 UI 开发**：
+   - 抽象产品：`Button`
+   - 具体产品：`WindowsButton`、`MacButton`
+   - 通过平台专属工厂创建
+
+### 面试常见问题解答
+
+Q：为什么不用简单工厂而要用工厂方法？
+A：当产品类型可能频繁扩展，且希望符合开闭原则时。比如我们的学雷锋案例中，未来可能新增"公务员"、"医生"等学雷锋群体，工厂方法只需新增类，而简单工厂需要修改核心逻辑。
+
+Q：工厂方法和抽象工厂的区别？
+A：工厂方法针对单个产品等级结构（如学雷锋者），抽象工厂针对多个关联产品族（如学雷锋者+被帮助者+记录系统等组合）。
+
+### 代码优化建议
+
+```java
+// 更符合架构设计的实现
+public interface LeiFeng {
+    void sweep();
+    void wash();
+    void buyRice();
+}
+
+// 具体产品
+@Repository // 可结合Spring注解
+public class Undergraduate implements LeiFeng {...}
+
+// 工厂接口
+public interface LeiFengFactory {
+    @Bean // 可声明为Spring Bean
+    LeiFeng create();
+}
+
+// 配置类
+@Configuration
+public class AppConfig {
+    @Bean
+    public LeiFengFactory undergraduateFactory() {
+        return Undergraduate::new; // 使用方法引用
+    }
+}
+```
+
+### 架构设计启示
+
+1. **识别变化点**：本例中"学雷锋者身份"是可能变化的维度
+2. **封装变化**：通过工厂接口隔离变化
+3. **依赖倒置**：高层模块（客户端）依赖抽象（雷锋接口），不依赖具体实现
+
+建议在架构设计中，当遇到以下特征时考虑工厂方法：
+
+- 系统需要支持不同"变体"（如不同学雷锋身份）
+- 这些变体会独立演化
+- 需要避免修改已有代码的情况下扩展新变体
+
+</div>
+</div>
+</div>
