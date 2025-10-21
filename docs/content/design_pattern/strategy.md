@@ -214,10 +214,6 @@ public class 收银客户端 {
 <div class="side-by-side-header">💡 解读</div>
 <div class="side-by-side-content">
 
-# 策略模式通俗解析
-
-## 从商场收银案例理解策略模式
-
 想象你是一个商场收银系统的开发者，系统需要处理各种促销活动：正常收费、打折、满减等。最初你可能会这样写代码：
 
 ```java

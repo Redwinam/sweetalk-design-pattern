@@ -4,6 +4,7 @@
 <div class="side-by-side-panel">
 <div class="side-by-side-header">📖 原文</div>
 <div class="side-by-side-content">
+
 ## 模式引入
 
 ### 问题描述
@@ -161,9 +162,6 @@ public class 主类 {
 <div class="side-by-side-panel">
 <div class="side-by-side-header">💡 解读</div>
 <div class="side-by-side-content">
-# 深入理解桥接模式：从手机软件兼容问题说起
-
-## 问题背景：手机软件的兼容困境
 
 想象你是一家手机软件公司的开发主管，现在要开发一款游戏和一款通讯录软件。但问题是：
 

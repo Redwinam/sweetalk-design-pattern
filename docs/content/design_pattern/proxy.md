@@ -213,9 +213,6 @@ JiaoJiao Li give you a chocolate
 <div class="side-by-side-panel">
 <div class="side-by-side-header">💡 解读</div>
 <div class="side-by-side-content">
-# 代理模式详解：从卓贾易追娇娇的故事到系统架构设计
-
-## 通俗理解代理模式
 
 这个追求故事生动地展示了代理模式的核心思想：卓贾易（真实对象）想追求娇娇（目标对象），但通过戴励（代理）来间接实现送礼物的行为。在软件设计中，代理模式就是为一个对象提供一个替身或占位符，以控制对这个对象的访问。
 

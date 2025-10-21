@@ -166,135 +166,117 @@ nginx_http_upstream_module 里定义的 upstream 框架就是中介者模式（�
 <div class="side-by-side-header">💡 解读</div>
 <div class="side-by-side-content">
 
-### 1. 现实世界类比（买票场景）
+想象你是一个新入职的员工（具体同事类），需要找其他部门的同事协作。如果直接去找，可能会遇到：
 
-想象你在火车站售票窗口排队买票：
+1. 不知道找谁
+2. 沟通效率低
+3. 产生大量交叉联系
 
-- **队伍（聚集对象）**：排队的人群就是一个聚集对象
-- **售票员（迭代器）**：售票员不需要知道队伍是怎么组织的（是排成直线还是蛇形），只需要按顺序处理每个人
-- **你（客户端）**：只需要告诉售票员"下一个"，不用关心队伍内部结构
+这时候主管（中介者）就起到了关键作用：
 
-### 2. 技术本质
+- 你只需要把需求告诉主管
+- 主管知道所有部门的职责和联系方式
+- 主管会帮你找到正确的对接人并传递信息
 
-迭代器模式的核心是**解耦遍历逻辑与数据结构**，就像把"怎么遍历"和"数据怎么存"分开管理。
+### 技术本质
 
-### 3. 架构师视角的深入理解
+中介者模式的核心是**将网状通信结构转变为星型结构**：
 
-#### 3.1 为什么需要迭代器？
+```
+网状结构（原始）：
+A ↔ B
+A ↔ C
+B ↔ C
+D ↔ A
+...
 
-- **隐藏复杂性**：比如 Java 的 ArrayList 底层是数组，LinkedList 是链表，但都用 iterator()获取迭代器
-- **统一访问接口**：不管底层是树、图还是列表，都可以用 hasNext()/next()遍历
-- **支持多种遍历**：可以同时有正向、反向、跳跃遍历等不同迭代器
+星型结构（中介者）：
+   Mediator
+  /   |   \
+A     B     C
+```
 
-#### 3.2 模式实现关键点
+### 架构师视角的深入分析
+
+#### 1. 解耦的艺术
+
+- **原始问题**：N 个对象相互通信需要 N\*(N-1)条引用关系
+- **中介者方案**：只需 N 条指向中介者的引用
+- **架构意义**：符合迪米特法则（最少知识原则），大幅降低系统复杂度
+
+#### 2. 通信控制中心化
+
+中介者实际上承担了：
+
+- 路由功能（决定消息转发给谁）
+- 协议转换（不同对象间的格式转换）
+- 流量控制（防止消息风暴）
+
+#### 3. 实际架构案例
+
+**案例 1：微服务中的 API 网关**
+
+- 网关作为中介者协调各个微服务
+- 处理服务发现、负载均衡、鉴权等
+- 服务间不直接通信，都通过网关
+
+**案例 2：消息中间件（如 Kafka）**
+
+- Producer 和 Consumer 不直接交互
+- 通过 Topic（中介者）进行消息传递
+- 实现发布/订阅模式
+
+### 代码实现的架构思考
 
 ```java
-// 抽象聚集（类似Java的Iterable接口）
-public interface Aggregate<T> {
-    Iterator<T> createIterator();
+// 关键设计点1：抽象中介者定义标准接口
+abstract class Mediator {
+    public abstract void relay(Colleague colleague, String msg);
 }
 
-// 具体聚集（类似ArrayList）
-public class ConcreteAggregate implements Aggregate<String> {
-    private String[] items = new String[10];
+// 关键设计点2：具体中介者维护同事引用
+class ConcreteMediator extends Mediator {
+    private ColleagueA a;
+    private ColleagueB b;
+
+    public void setA(ColleagueA a) { this.a = a; }
+    public void setB(ColleagueB b) { this.b = b; }
 
     @Override
-    public Iterator<String> createIterator() {
-        return new ConcreteIterator(this);
-    }
-    //...其他方法
-}
-
-// 迭代器接口（类似Java的Iterator）
-public interface Iterator<T> {
-    boolean hasNext();
-    T next();
-}
-
-// 具体迭代器
-public class ConcreteIterator implements Iterator<String> {
-    private ConcreteAggregate aggregate;
-    private int index = 0;
-
-    public ConcreteIterator(ConcreteAggregate aggregate) {
-        this.aggregate = aggregate;
-    }
-
-    @Override
-    public boolean hasNext() {
-        return index < aggregate.size();
-    }
-
-    @Override
-    public String next() {
-        return aggregate.get(index++);
+    public void relay(Colleague colleague, String msg) {
+        if(colleague == a) b.receive(msg);
+        else a.receive(msg);
     }
 }
 ```
 
-#### 3.3 架构设计中的应用
+### 架构设计权衡
 
-1. **跨集合统一操作**：数据库查询结果、文件目录树、内存集合都可以用迭代器
-2. **延迟加载**：大数据集可以分批加载（如分页查询）
-3. **线程安全**：可以设计线程安全的迭代器（如 CopyOnWriteArrayList）
+#### 适用场景（√）
 
-### 4. 实际案例
+1. 复杂交互的组件群（如 UI 控件组）
+2. 跨系统协调（如 ESB 企业服务总线）
+3. 多协议转换场景
 
-**场景**：电商平台商品搜索系统
+#### 不适用场景（×）
 
-- 商品可能存储在：MySQL、ElasticSearch、Redis 等不同存储中
-- 使用迭代器模式：
+1. 简单的一对一通信
+2. 性能敏感场景（中介者可能成为瓶颈）
+3. 需要高度灵活的动态通信
 
-```java
-// 统一商品迭代器接口
-public interface ProductIterator {
-    boolean hasNext();
-    Product next();
-}
+### 高级架构启示
 
-// 不同数据源的实现
-public class ESProductIterator implements ProductIterator {
-    // 实现ElasticSearch的游标遍历
-}
+1. **与观察者模式结合**：中介者内部可以使用观察者实现事件通知
+2. **分布式演进**：中介者模式是服务网格（Service Mesh）的思想雏形
+3. **性能考量**：中介者可能成为单点故障，需要考虑集群化
 
-public class MySQLProductIterator implements ProductIterator {
-    // 实现数据库结果集遍历
-}
+### 真题可能关联点
 
-// 客户端统一调用
-while(iterator.hasNext()) {
-    Product p = iterator.next();
-    // 处理商品...
-}
-```
+1. 系统解耦方法对比（中介者 vs 外观模式）
+2. 分布式系统协调问题
+3. 架构质量属性中的可修改性提升
 
-### 5. 系统架构中的价值
-
-1. **可扩展性**：新增数据源只需新增迭代器实现
-2. **可维护性**：遍历逻辑集中管理
-3. **接口标准化**：符合开闭原则（对扩展开放，对修改关闭）
-
-### 6. 常见面试问题
-
-Q：迭代器模式和直接访问集合有什么区别？
-A：就像用遥控器换台（迭代器）vs 直接操作电视机内部零件（直接访问集合），前者更安全、更灵活。
-
-Q：为什么 Java 的 foreach 循环需要 Iterable？
-A：这就是迭代器模式的应用，编译器会把 foreach 转换为 iterator()调用。
-
-### 7. 备考建议
-
-记住这个口诀：
-"遍历不用管底层，迭代器中定标准，
-聚集创建迭代器，hasNext 加 next 行"
-
-建议画 UML 图时重点标注：
-
-- 聚集（Aggregate）和迭代器（Iterator）的关联关系
-- 具体迭代器持有对具体聚集的引用
-- 客户端只依赖抽象接口
-
-希望这个解释能帮你从架构师角度深入理解迭代器模式！在实际系统设计中，这个模式经常和组合模式（Composite）一起使用来处理树形结构。
+记住这个模式的本质：不是消灭通信，而是让通信变得有序可控。就像优秀的架构师不是阻止系统交互，而是设计优雅的交互机制。
 
 </div>
 </div>

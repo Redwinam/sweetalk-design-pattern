@@ -189,7 +189,6 @@ public class 主类 {
 <div class="side-by-side-panel">
 <div class="side-by-side-header">💡 解读</div>
 <div class="side-by-side-content">
-好的，我将从系统架构设计师的角度，用通俗易懂的方式帮你深入理解迭代器模式。
 
 ### 1. 现实世界类比（买票场景）
 
@@ -321,5 +320,6 @@ A：这就是迭代器模式的应用，编译器会把 foreach 转换为 iterat
 
 希望这个解释能帮你从架构师角度深入理解迭代器模式！在实际系统设计中，这个模式经常和组合模式（Composite）一起使用来处理树形结构。
 
+</div>
 </div>
 </div>

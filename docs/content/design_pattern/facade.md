@@ -211,9 +211,6 @@ public class 外观主类 {
 <div class="side-by-side-panel">
 <div class="side-by-side-header">💡 解读</div>
 <div class="side-by-side-content">
-# 外观模式（Facade Pattern）深入解析
-
-## 通俗理解外观模式
 
 就像你举的基金例子一样，外观模式就像是一个"中介"或"接待员"。想象一下：
 
@@ -305,6 +302,7 @@ public class 基金 {
    ```
 
 2. **电商系统订单处理**：
+
    ```java
    public class OrderFacade {
        private InventorySystem inventory;

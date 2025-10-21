@@ -193,9 +193,6 @@ public class 主类 {
 <div class="side-by-side-panel">
 <div class="side-by-side-header">💡 解读</div>
 <div class="side-by-side-content">
-# 装饰模式（Decorator Pattern）通俗解析
-
-## 从穿衣打扮理解装饰模式
 
 想象你要给一个虚拟人物换装系统开发功能。最初你可能会这样设计：
 
