@@ -22,31 +22,31 @@
 本书包括常见的 23 个设计模式，一般又被分为三种类型：
 
 - 创建型模式（5 个）：与对象的创建有关。
-    - 工厂方法模式
-    - 抽象工厂模式
-    - 单例模式
-    - 建造者模式
-    - 原型模式
+    - 工厂方法模式（Factory Method）
+    - 抽象工厂模式（Abstract Factory）
+    - 单例模式（Singleton）
+    - 建造者模式（Builder）
+    - 原型模式（Prototype）
 - 结构型模式（7 个）：与对象的组装有关。
-    - 适配器模式
-    - 装饰模式
-    - 外观模式
-    - 桥接模式
-    - 代理模式
-    - 组合模式
-    - 享元模式
+    - 适配器模式（Adapter）
+    - 装饰模式（Decorator）
+    - 外观模式（Facade）
+    - 桥接模式（Bridge）
+    - 代理模式（Proxy）
+    - 组合模式（Composite）
+    - 享元模式（Flyweight）
 - 行为模式（11 个）：与对象之间的沟通协调有关。
-    - 观察者模式
-    - 命令模式
-    - 状态模式
-    - 职责链模式
-    - 模板方法模式
-    - 策略模式
-    - 解释器模式
-    - 中介者模式
-    - 访问者模式
-    - 备忘录模式
-    - 迭代器模式
+    - 观察者模式（Observer）
+    - 命令模式（Command）
+    - 状态模式（State）
+    - 职责链模式（Chain of Responsibility）
+    - 模板方法模式（Template Method）
+    - 策略模式（Strategy）
+    - 解释器模式（Interpreter）
+    - 中介者模式（Mediator）
+    - 访问者模式（Visitor）
+    - 备忘录模式（Memento）
+    - 迭代器模式（Iterator）
 
 另外，面向对象设计的基本原则包括：
 
