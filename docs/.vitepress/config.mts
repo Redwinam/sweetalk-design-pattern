@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "大话设计模式",
   description: "设计模式学习笔记",
+  base: '/sweetalk-design-pattern/',
   themeConfig: {
     nav: [
       { text: '首页 (Home)', link: '/' },
