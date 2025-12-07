@@ -4,23 +4,76 @@ export default defineConfig({
   title: "大话设计模式",
   description: "设计模式学习笔记",
   base: '/sweetalk-design-pattern/',
+  cleanUrls: true,
   themeConfig: {
     nav: [
-      { text: '首页 (Home)', link: '/' },
-      { text: '简介 (Introduction)', link: '/introduction' },
-      { text: '设计原则 (Design Principles)', link: '/design_principles/single_responsiblity_principle' },
-      { text: '设计模式 (Design Patterns)', link: '/design_pattern/simple_factory' }
+      { text: '首页', link: '/' },
+      { text: '简介', link: '/introduction' },
+      {
+        text: '设计原则',
+        items: [
+          { text: '单一职责原则', link: '/design_principles/single_responsiblity_principle' },
+          { text: '开闭原则', link: '/design_principles/open_closed_principle' },
+          { text: '依赖倒置原则', link: '/design_principles/dependence_inversion_principle' },
+          { text: '里氏替换原则', link: '/design_principles/liskov_substituion_principle' },
+          { text: '迪米特法则', link: '/design_principles/law_of_demeter' }
+        ]
+      },
+      {
+        text: '设计模式',
+        items: [
+          {
+            text: '创建型模式',
+            items: [
+              { text: '简单工厂模式', link: '/design_pattern/simple_factory' },
+              { text: '工厂方法模式', link: '/design_pattern/factory_method' },
+              { text: '抽象工厂模式', link: '/design_pattern/abstract_factory' },
+              { text: '建造者模式', link: '/design_pattern/builder' },
+              { text: '原型模式', link: '/design_pattern/prototype' },
+              { text: '单例模式', link: '/design_pattern/singleton' }
+            ]
+          },
+          {
+            text: '结构型模式',
+            items: [
+              { text: '适配器模式', link: '/design_pattern/adapter' },
+              { text: '桥接模式', link: '/design_pattern/bridge' },
+              { text: '组合模式', link: '/design_pattern/composite' },
+              { text: '装饰模式', link: '/design_pattern/decorator' },
+              { text: '外观模式', link: '/design_pattern/facade' },
+              { text: '享元模式', link: '/design_pattern/flyweight' },
+              { text: '代理模式', link: '/design_pattern/proxy' }
+            ]
+          },
+          {
+            text: '行为型模式',
+            items: [
+              { text: '职责链模式', link: '/design_pattern/chain_of_responsibility' },
+              { text: '命令模式', link: '/design_pattern/command' },
+              { text: '解释器模式', link: '/design_pattern/interpreter' },
+              { text: '迭代器模式', link: '/design_pattern/iterator' },
+              { text: '中介者模式', link: '/design_pattern/mediator' },
+              { text: '备忘录模式', link: '/design_pattern/memento' },
+              { text: '观察者模式', link: '/design_pattern/observer' },
+              { text: '状态模式', link: '/design_pattern/state' },
+              { text: '策略模式', link: '/design_pattern/strategy' },
+              { text: '模板方法模式', link: '/design_pattern/template_method' },
+              { text: '访问者模式', link: '/design_pattern/visitor' }
+            ]
+          }
+        ]
+      }
     ],
 
     sidebar: [
       {
-        text: '简介 (Introduction)',
+        text: '简介',
         items: [
           { text: '简介 (Introduction)', link: '/introduction' }
         ]
       },
       {
-        text: '设计原则 (Design Principles)',
+        text: '设计原则',
         items: [
           { text: '单一职责原则 (Single Responsibility Principle)', link: '/design_principles/single_responsiblity_principle' },
           { text: '开闭原则 (Open Closed Principle)', link: '/design_principles/open_closed_principle' },
@@ -30,7 +83,7 @@ export default defineConfig({
         ]
       },
       {
-        text: '设计模式 (Design Patterns)',
+        text: '设计模式',
         items: [
           { text: '简单工厂模式 (Simple Factory)', link: '/design_pattern/simple_factory' },
           { text: '策略模式 (Strategy)', link: '/design_pattern/strategy' },
@@ -61,7 +114,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Redwinam/sweetalk-design-pattern' }
     ]
   }
 })
