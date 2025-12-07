@@ -97,7 +97,7 @@ public class 主类 {
 
 ### **结构组成**
 
-![image-20221017164911912](img/flyweight/flyweight.JPG)
+![image-20221017164911912](img/flyweight/flyweight.jpg)
 
 ## 模式评价
 

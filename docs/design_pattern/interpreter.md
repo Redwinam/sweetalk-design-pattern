@@ -195,7 +195,7 @@ public class 主类 {
 
 ### **结构**组成
 
-![image-20221017164911912](img/interpreter/interpreter.JPG)
+![image-20221017164911912](img/interpreter/interpreter.jpg)
 
 ## 模式评价
 

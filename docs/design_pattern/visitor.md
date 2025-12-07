@@ -155,7 +155,7 @@ public class 主类 {
 
 ### **结构**组成
 
-![image-20221017164911912](img/visitor/visitor.JPG)
+![image-20221017164911912](img/visitor/visitor.jpg)
 
 ## 模式评价
 

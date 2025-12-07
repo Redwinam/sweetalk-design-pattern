@@ -188,7 +188,7 @@ public class 主类 {
 
 ### 结构组成
 
-![image-20221017164911912](img/chain_of_responsibility/chain_of_responsibility.JPG)
+![image-20221017164911912](img/chain_of_responsibility/chain_of_responsibility.jpg)
 
 ## 模式评价
 

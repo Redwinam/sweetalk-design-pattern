@@ -126,7 +126,7 @@ public class 主类 {
 
 ### **结构**组成
 
-![image-20221017164911912](img/command/command.JPG)
+![image-20221017164911912](img/command/command.jpg)
 
 ## 模式评价
 

@@ -130,7 +130,7 @@ public class 主类 {
 
 ### 结构组成
 
-![image-20221017164911912](img/bridge/bridge.JPG)
+![image-20221017164911912](img/bridge/bridge.jpg)
 
 ## 模式评价
 

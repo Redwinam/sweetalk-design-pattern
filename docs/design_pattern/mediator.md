@@ -136,7 +136,7 @@ public class 主类 {
 
 ### 结构组成
 
-![image-20221017164911912](img/mediator/mediator.JPG)
+![image-20221017164911912](img/mediator/mediator.jpg)
 
 ## 模式评价
 
