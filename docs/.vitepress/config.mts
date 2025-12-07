@@ -67,7 +67,7 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '简介',
+        text: '前言',
         items: [
           { text: '<div class="sb-item"><span class="sb-cn">简介</span><span class="sb-en">Introduction</span></div>', link: '/introduction' }
         ]

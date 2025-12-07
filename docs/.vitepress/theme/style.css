@@ -14,7 +14,6 @@
 .sb-en {
   font-size: 11px;
   color: var(--vp-c-text-3);
-  font-family: var(--vp-font-family-mono);
   line-height: 1.2;
   opacity: 0.8;
   word-break: break-word;

@@ -85,9 +85,19 @@ provide('tabsProvider', {
   border-bottom: 2px solid var(--vp-c-brand); /* 可选：增加底部指示条 */
   margin-bottom: -1px; /* 遮住底部的边框 */
   font-weight: 600;
+  border-bottom: 2px solid transparent; /* Remove bottom border */
 }
 
 .app-tabs-body {
   padding: 24px;
+}
+
+.app-tabs-body :deep(h1:first-child),
+.app-tabs-body :deep(h2:first-child),
+.app-tabs-body :deep(h3:first-child),
+.app-tabs-body :deep(h4:first-child) {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
 }
 </style>

@@ -19,25 +19,27 @@ hero:
 
 <style>
 .pattern-index {
-  margin-top: 40px;
+  margin-top: 32px;
 }
 
 .pattern-group {
-  margin-bottom: 30px;
+  margin-bottom: 48px;
 }
 
 .pattern-group h2 {
-  border-bottom: 1px solid var(--vp-c-divider);
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 8px;
   font-size: 24px;
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .section-desc {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   color: var(--vp-c-text-2);
   font-size: 16px;
+  line-height: 1.6;
 }
 
 .pattern-list {
@@ -72,7 +74,6 @@ hero:
 .pattern-en {
   font-size: 13px;
   color: var(--vp-c-text-2);
-  font-family: var(--vp-font-family-mono);
 }
 </style>
 
