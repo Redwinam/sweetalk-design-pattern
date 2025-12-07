@@ -69,46 +69,46 @@ export default defineConfig({
       {
         text: '简介',
         items: [
-          { text: '简介 (Introduction)', link: '/introduction' }
+          { text: '<div class="sb-item"><span class="sb-cn">简介</span><span class="sb-en">Introduction</span></div>', link: '/introduction' }
         ]
       },
       {
         text: '设计原则',
         items: [
-          { text: '单一职责原则 (Single Responsibility Principle)', link: '/design_principles/single_responsiblity_principle' },
-          { text: '开闭原则 (Open Closed Principle)', link: '/design_principles/open_closed_principle' },
-          { text: '依赖倒置原则 (Dependence Inversion Principle)', link: '/design_principles/dependence_inversion_principle' },
-          { text: '里氏替换原则 (Liskov Substitution Principle)', link: '/design_principles/liskov_substituion_principle' },
-          { text: '迪米特法则 (Law of Demeter)', link: '/design_principles/law_of_demeter' }
+          { text: '<div class="sb-item"><span class="sb-cn">单一职责原则</span><span class="sb-en">Single Responsibility Principle</span></div>', link: '/design_principles/single_responsiblity_principle' },
+          { text: '<div class="sb-item"><span class="sb-cn">开闭原则</span><span class="sb-en">Open Closed Principle</span></div>', link: '/design_principles/open_closed_principle' },
+          { text: '<div class="sb-item"><span class="sb-cn">依赖倒置原则</span><span class="sb-en">Dependence Inversion Principle</span></div>', link: '/design_principles/dependence_inversion_principle' },
+          { text: '<div class="sb-item"><span class="sb-cn">里氏替换原则</span><span class="sb-en">Liskov Substitution Principle</span></div>', link: '/design_principles/liskov_substituion_principle' },
+          { text: '<div class="sb-item"><span class="sb-cn">迪米特法则</span><span class="sb-en">Law of Demeter</span></div>', link: '/design_principles/law_of_demeter' }
         ]
       },
       {
         text: '设计模式',
         items: [
-          { text: '简单工厂模式 (Simple Factory)', link: '/design_pattern/simple_factory' },
-          { text: '策略模式 (Strategy)', link: '/design_pattern/strategy' },
-          { text: '装饰模式 (Decorator)', link: '/design_pattern/decorator' },
-          { text: '代理模式 (Proxy)', link: '/design_pattern/proxy' },
-          { text: '工厂方法模式 (Factory Method)', link: '/design_pattern/factory_method' },
-          { text: '原型模式 (Prototype)', link: '/design_pattern/prototype' },
-          { text: '模板方法模式 (Template Method)', link: '/design_pattern/template_method' },
-          { text: '外观模式 (Facade)', link: '/design_pattern/facade' },
-          { text: '建造者模式 (Builder)', link: '/design_pattern/builder' },
-          { text: '观察者模式 (Observer)', link: '/design_pattern/observer' },
-          { text: '抽象工厂模式 (Abstract Factory)', link: '/design_pattern/abstract_factory' },
-          { text: '状态模式 (State)', link: '/design_pattern/state' },
-          { text: '适配器模式 (Adapter)', link: '/design_pattern/adapter' },
-          { text: '备忘录模式 (Memento)', link: '/design_pattern/memento' },
-          { text: '组合模式 (Composite)', link: '/design_pattern/composite' },
-          { text: '迭代器模式 (Iterator)', link: '/design_pattern/iterator' },
-          { text: '单例模式 (Singleton)', link: '/design_pattern/singleton' },
-          { text: '桥接模式 (Bridge)', link: '/design_pattern/bridge' },
-          { text: '命令模式 (Command)', link: '/design_pattern/command' },
-          { text: '职责链模式 (Chain of Responsibility)', link: '/design_pattern/chain_of_responsibility' },
-          { text: '中介者模式 (Mediator)', link: '/design_pattern/mediator' },
-          { text: '享元模式 (Flyweight)', link: '/design_pattern/flyweight' },
-          { text: '解释器模式 (Interpreter)', link: '/design_pattern/interpreter' },
-          { text: '访问者模式 (Visitor)', link: '/design_pattern/visitor' }
+          { text: '<div class="sb-item"><span class="sb-cn">简单工厂模式</span><span class="sb-en">Simple Factory</span></div>', link: '/design_pattern/simple_factory' },
+          { text: '<div class="sb-item"><span class="sb-cn">策略模式</span><span class="sb-en">Strategy</span></div>', link: '/design_pattern/strategy' },
+          { text: '<div class="sb-item"><span class="sb-cn">装饰模式</span><span class="sb-en">Decorator</span></div>', link: '/design_pattern/decorator' },
+          { text: '<div class="sb-item"><span class="sb-cn">代理模式</span><span class="sb-en">Proxy</span></div>', link: '/design_pattern/proxy' },
+          { text: '<div class="sb-item"><span class="sb-cn">工厂方法模式</span><span class="sb-en">Factory Method</span></div>', link: '/design_pattern/factory_method' },
+          { text: '<div class="sb-item"><span class="sb-cn">原型模式</span><span class="sb-en">Prototype</span></div>', link: '/design_pattern/prototype' },
+          { text: '<div class="sb-item"><span class="sb-cn">模板方法模式</span><span class="sb-en">Template Method</span></div>', link: '/design_pattern/template_method' },
+          { text: '<div class="sb-item"><span class="sb-cn">外观模式</span><span class="sb-en">Facade</span></div>', link: '/design_pattern/facade' },
+          { text: '<div class="sb-item"><span class="sb-cn">建造者模式</span><span class="sb-en">Builder</span></div>', link: '/design_pattern/builder' },
+          { text: '<div class="sb-item"><span class="sb-cn">观察者模式</span><span class="sb-en">Observer</span></div>', link: '/design_pattern/observer' },
+          { text: '<div class="sb-item"><span class="sb-cn">抽象工厂模式</span><span class="sb-en">Abstract Factory</span></div>', link: '/design_pattern/abstract_factory' },
+          { text: '<div class="sb-item"><span class="sb-cn">状态模式</span><span class="sb-en">State</span></div>', link: '/design_pattern/state' },
+          { text: '<div class="sb-item"><span class="sb-cn">适配器模式</span><span class="sb-en">Adapter</span></div>', link: '/design_pattern/adapter' },
+          { text: '<div class="sb-item"><span class="sb-cn">备忘录模式</span><span class="sb-en">Memento</span></div>', link: '/design_pattern/memento' },
+          { text: '<div class="sb-item"><span class="sb-cn">组合模式</span><span class="sb-en">Composite</span></div>', link: '/design_pattern/composite' },
+          { text: '<div class="sb-item"><span class="sb-cn">迭代器模式</span><span class="sb-en">Iterator</span></div>', link: '/design_pattern/iterator' },
+          { text: '<div class="sb-item"><span class="sb-cn">单例模式</span><span class="sb-en">Singleton</span></div>', link: '/design_pattern/singleton' },
+          { text: '<div class="sb-item"><span class="sb-cn">桥接模式</span><span class="sb-en">Bridge</span></div>', link: '/design_pattern/bridge' },
+          { text: '<div class="sb-item"><span class="sb-cn">命令模式</span><span class="sb-en">Command</span></div>', link: '/design_pattern/command' },
+          { text: '<div class="sb-item"><span class="sb-cn">职责链模式</span><span class="sb-en">Chain of Responsibility</span></div>', link: '/design_pattern/chain_of_responsibility' },
+          { text: '<div class="sb-item"><span class="sb-cn">中介者模式</span><span class="sb-en">Mediator</span></div>', link: '/design_pattern/mediator' },
+          { text: '<div class="sb-item"><span class="sb-cn">享元模式</span><span class="sb-en">Flyweight</span></div>', link: '/design_pattern/flyweight' },
+          { text: '<div class="sb-item"><span class="sb-cn">解释器模式</span><span class="sb-en">Interpreter</span></div>', link: '/design_pattern/interpreter' },
+          { text: '<div class="sb-item"><span class="sb-cn">访问者模式</span><span class="sb-en">Visitor</span></div>', link: '/design_pattern/visitor' }
         ]
       }
     ],

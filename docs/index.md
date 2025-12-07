@@ -10,25 +10,11 @@ hero:
       text: 开始阅读
       link: /introduction
     - theme: alt
-      text: 浏览设计模式
+      text: 设计模式
       link: /design_pattern/simple_factory
     - theme: alt
-      text: 查看设计原则
+      text: 设计原则
       link: /design_principles/single_responsiblity_principle
-
-features:
-  - title: 💡 设计原则 (Design Principles)
-    details: SOLID 五大原则与其他核心设计理念，构建高质量代码的基石。
-    link: /design_principles/single_responsiblity_principle
-  - title: 🏭 创建型模式 (Creational)
-    details: 关注对象的创建过程，解耦对象的创建与使用。
-    link: /design_pattern/simple_factory
-  - title: 🏗️ 结构型模式 (Structural)
-    details: 关注类和对象的组合，简化系统的结构设计。
-    link: /design_pattern/adapter
-  - title: 🔄 行为型模式 (Behavioral)
-    details: 关注对象之间的通信与职责分配，提升系统的灵活性。
-    link: /design_pattern/strategy
 ---
 
 <style>
@@ -46,6 +32,12 @@ features:
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 600;
+}
+
+.section-desc {
+  margin-bottom: 24px;
+  color: var(--vp-c-text-2);
+  font-size: 16px;
 }
 
 .pattern-list {
@@ -88,6 +80,7 @@ features:
 
 <div class="pattern-group">
   <h2>📐 设计原则 (Design Principles)</h2>
+  <p class="section-desc">SOLID 五大原则与其他核心设计理念，构建高质量代码的基石。</p>
   <div class="pattern-list">
     <a href="./design_principles/single_responsiblity_principle" class="pattern-item">
       <span class="pattern-name">单一职责原则</span>
@@ -114,6 +107,7 @@ features:
 
 <div class="pattern-group">
   <h2>🏭 创建型模式 (Creational Patterns)</h2>
+  <p class="section-desc">关注对象的创建过程，解耦对象的创建与使用。</p>
   <div class="pattern-list">
     <a href="./design_pattern/simple_factory" class="pattern-item">
       <span class="pattern-name">简单工厂模式</span>
@@ -144,6 +138,7 @@ features:
 
 <div class="pattern-group">
   <h2>🏗️ 结构型模式 (Structural Patterns)</h2>
+  <p class="section-desc">关注类和对象的组合，简化系统的结构设计。</p>
   <div class="pattern-list">
     <a href="./design_pattern/adapter" class="pattern-item">
       <span class="pattern-name">适配器模式</span>
@@ -178,6 +173,7 @@ features:
 
 <div class="pattern-group">
   <h2>🔄 行为型模式 (Behavioral Patterns)</h2>
+  <p class="section-desc">关注对象之间的通信与职责分配，提升系统的灵活性。</p>
   <div class="pattern-list">
     <a href="./design_pattern/chain_of_responsibility" class="pattern-item">
       <span class="pattern-name">职责链模式</span>
