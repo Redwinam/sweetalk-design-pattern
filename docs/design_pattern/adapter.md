@@ -1,9 +1,9 @@
 # 适配器模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -206,12 +206,9 @@ public class 主类 {
 适配模式缺点包括：
 
 - 代码复杂度增加。
-</div>
-</div>
+</AppTab>
+<AppTab label="💡 解读">
 
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
 好的，我将从系统架构设计师的角度，用通俗易懂的方式帮你深入理解适配器模式。
 
 1. 现实世界类比（加深理解）
@@ -310,6 +307,5 @@ class AwsAdapter implements CloudStorage {
 "旧物新用靠适配，接口转换不修改，
 包装调用解耦合，整合遗留最常在"
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

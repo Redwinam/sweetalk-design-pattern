@@ -1,9 +1,9 @@
 # 建造者模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -266,12 +266,9 @@ public class 建造者主类 {
 
 - 产品必须有共同点，范围有限制
 - 如内部变化复杂，会有很多的建造类
-</div>
-</div>
+</AppTab>
+<AppTab label="💡 解读">
 
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
 
 想象你要组装一台电脑：
 
@@ -356,6 +353,5 @@ public class Director {
 1. 构建过程与产品表示的分离思想
 2. 与工厂模式、原型模式等其他创建型模式的对比
 3. 在复杂对象构造场景下的优势体现
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

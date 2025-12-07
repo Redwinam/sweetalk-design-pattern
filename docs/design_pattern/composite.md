@@ -1,9 +1,9 @@
 # 组合模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -236,12 +236,9 @@ public class 主类 {
 组合模式缺点包括：
 
 - 层级太深时结构会变得庞杂。
-</div>
-</div>
+</AppTab>
+<AppTab label="💡 解读">
 
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
 想象你是一家集团公司的 IT 架构师，要设计 OA 系统来管理整个集团的组织架构。集团有总部、分公司、办事处、各部门，就像一棵大树：
 
 - 树根：北京总部
@@ -358,6 +355,5 @@ public class 主类 {
 
 这样设计后，无论是处理一级分类"家电"还是三级分类"空调"，都可以通过相同的接口操作，且支持无限级分类扩展。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

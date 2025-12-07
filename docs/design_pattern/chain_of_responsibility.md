@@ -1,9 +1,9 @@
 # 职责链模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -214,12 +214,9 @@ public class 主类 {
 
 - 请求可能到了链的末端都得不到处理，或者因为没有正确配置得不到处理。
 - 较长的责任链可能会影响到系统的性能。
-</div>
-</div>
+</AppTab>
+<AppTab label="💡 解读">
 
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
 
 想象你在公司请假：
 
@@ -328,6 +325,5 @@ public void doFilter(request, response) {
 
 希望这个解读能帮助你在备考时既理解本质，又能联系实际架构设计。备考时可以多思考：如果让你设计一个 OA 审批系统，如何用这个模式支持未来可能新增的"临时委员会审批"等特殊环节？
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

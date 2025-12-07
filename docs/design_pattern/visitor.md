@@ -1,9 +1,9 @@
 # 访问者模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 问题引入
 
@@ -179,12 +179,9 @@ public class 主类 {
 
 增加新的数据结构变得困难。因为一般数据结构都会变化，所以使用访问者模式的机会不太多。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 你可以把访问者模式想象成：**你是一个领域的专家（比如税务稽查员），要去巡视一个结构复杂的公司（比如一个拥有不同部门的对象结构）。你的任务是针对公司里不同类型的部门（比如财务部、技术部、行政部），执行各自特定的稽查动作。**
 
@@ -391,6 +388,5 @@ public class Client {
 
 作为系统架构师，当你在评审设计时，如果遇到“一个相对稳定的对象结构，需要定义许多繁杂且可能不断扩展的操作”这类需求时，访问者模式就应该立刻出现在你的脑海里。它是一个典型的**行为模式**，其价值在于优雅地解决了算法和对象结构的耦合问题，是构建高扩展性、高维护性系统的一件利器，但使用时必须权衡其“破坏封装”和“要求结构稳定”的代价。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

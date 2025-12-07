@@ -1,9 +1,9 @@
 # 策略模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 问题引入
 
@@ -207,12 +207,9 @@ public class 收银客户端 {
 
 1. 《深入设计模式》
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你是一个商场收银系统的开发者，系统需要处理各种促销活动：正常收费、打折、满减等。最初你可能会这样写代码：
 
@@ -317,6 +314,5 @@ if(促销类型 == "正常收费"){
 
 策略模式是常见的设计模式，理解其应用场景和实现方式对系统架构设计非常重要。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

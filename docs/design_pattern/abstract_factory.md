@@ -1,9 +1,9 @@
 # 抽象工厂模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -216,12 +216,9 @@ public class 主类 {
 
 - 难以支持新种类的产品，因为扩展新类需要扩展工厂接口，涉及到所有子类的改变。比如我们新增了一张 Project 表，那就需要在所有地方都实现一遍。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 # 深入理解抽象工厂模式
 
 ## 从架构师视角看抽象工厂模式
@@ -367,6 +364,5 @@ public class FactoryProducer {
 
 这种设计支持新数据库的扩展而不修改现有代码，符合开闭原则。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

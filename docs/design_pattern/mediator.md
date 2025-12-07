@@ -1,9 +1,9 @@
 # 中介者模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -159,12 +159,9 @@ nginx_http_upstream_module 里定义的 upstream 框架就是中介者模式（�
 模式缺点：
 
 - 中介者对象会较为复杂。
-</div>
-</div>
+</AppTab>
+<AppTab label="💡 解读">
 
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
 
 想象你是一个新入职的员工（具体同事类），需要找其他部门的同事协作。如果直接去找，可能会遇到：
 
@@ -278,6 +275,5 @@ class ConcreteMediator extends Mediator {
 
 记住这个模式的本质：不是消灭通信，而是让通信变得有序可控。就像优秀的架构师不是阻止系统交互，而是设计优雅的交互机制。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

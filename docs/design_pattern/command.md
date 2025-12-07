@@ -1,9 +1,9 @@
 # 命令模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 问题引入
 
@@ -148,12 +148,9 @@ public class 主类 {
 
 导致出现过多的命令类。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象一个烧烤摊的场景：顾客直接向烧烤师傅点单，师傅边听边烤。这种方式有几个问题：
 
@@ -244,6 +241,5 @@ A：可以在命令类中添加 undo()方法，存储执行前的状态。
 Q：命令队列有什么好处？
 A：可以实现异步处理、请求排队、延迟执行等高级功能。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

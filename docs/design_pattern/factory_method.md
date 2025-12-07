@@ -1,9 +1,9 @@
 # 工厂方法模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 问题引入
 
@@ -166,12 +166,9 @@ public class 工厂方法客户端 {
 
 1. 《深入设计模式》
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你是一家快餐连锁店的总部架构师。最初只有一种"大学生套餐"（就像学雷锋的大学生），但随着业务扩展，现在要推出"社区志愿者套餐"（新角色）。如果每次出新套餐都要修改总部中央厨房的所有设备（相当于简单工厂模式），这显然不高效。
 
@@ -293,6 +290,5 @@ public class AppConfig {
 - 这些变体会独立演化
 - 需要避免修改已有代码的情况下扩展新变体
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

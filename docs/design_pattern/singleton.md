@@ -1,9 +1,9 @@
 # 单例模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -144,12 +144,9 @@ public class 主类 {
 - 可能会对同一个对象创建多个引用。
 - 与所有依赖该类的类耦合比较紧密。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 单例模式就像是一个公司的 CEO 职位 - 无论你什么时候问"谁是 CEO"，得到的都是同一个人（实例）。在技术层面，它确保一个类只有一个实例，并提供一个全局访问点。
 
@@ -310,6 +307,5 @@ public class DatabasePool {
 
 单例模式是系统架构中基础而重要的设计模式，理解其实现细节和适用场景对于构建健壮、高效的软件系统至关重要。作为架构师，不仅要掌握实现技术，更要能够在架构层面权衡其利弊，做出合理的设计决策。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

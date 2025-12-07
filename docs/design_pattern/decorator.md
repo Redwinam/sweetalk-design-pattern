@@ -1,9 +1,9 @@
 # 装饰模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 问题引入
 
@@ -187,12 +187,9 @@ public class 主类 {
 
 1. 《深入设计模式》
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你要给一个虚拟人物换装系统开发功能。最初你可能会这样设计：
 
@@ -290,6 +287,5 @@ t.show();
 
 装饰模式是系统架构设计中常用的结构型模式，理解其灵活扩展的特性对于设计可维护的系统架构非常重要。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

@@ -1,9 +1,9 @@
 # 状态模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -248,12 +248,9 @@ public class 主类 {
 - 新的行为可能涉及大量改动。因为该行为可能涉及到多个类，此时需要更新所有涉及到的类，将新的行为逻辑加入。
 - 状态少或很少改变时有点小题大做，此时不应使用状态模式。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 好的，我来帮你从系统架构设计师的角度，用通俗易懂的方式理解状态模式。
 
@@ -372,6 +369,5 @@ class WorkContext {
 
 希望这个解释能帮你建立直观理解！备考时可以多画状态转换图，思考哪些系统适合用这个模式（有明显状态划分且行为随状态变化的场景）。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

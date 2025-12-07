@@ -1,9 +1,9 @@
 # 简单工厂模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -147,12 +147,9 @@ public class 计算器 {
 
 将类类比为产品，则使用者可以在不清楚类生产的具体过程的情况下，使用不同的产品。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你是一家汽车制造厂的老板。你有生产轿车、SUV 和卡车的能力。客户不需要知道这些车是怎么制造的，他们只需要告诉销售员"我要一辆 SUV"，销售员就会从工厂里调出一辆 SUV 给客户。
 
@@ -250,6 +247,5 @@ System.out.println(运算对象.获取结果());
 
 记住：简单工厂模式是设计模式中最基础但非常重要的模式，理解它能为学习其他创建型模式打下坚实基础。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

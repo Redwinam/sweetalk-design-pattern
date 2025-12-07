@@ -1,9 +1,9 @@
 # 代理模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 问题引入
 
@@ -207,12 +207,9 @@ JiaoJiao Li give you a chocolate
 
 1. 《深入设计模式》
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 这个追求故事生动地展示了代理模式的核心思想：卓贾易（真实对象）想追求娇娇（目标对象），但通过戴励（代理）来间接实现送礼物的行为。在软件设计中，代理模式就是为一个对象提供一个替身或占位符，以控制对这个对象的访问。
 
@@ -334,6 +331,5 @@ public class BankService {
 
 通过这样生动的案例和实际的技术解析，希望能帮助你深入理解代理模式在系统架构中的应用和价值。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

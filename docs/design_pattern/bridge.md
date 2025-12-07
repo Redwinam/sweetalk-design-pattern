@@ -1,9 +1,9 @@
 # 桥接模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -156,12 +156,9 @@ public class 主类 {
 
 - 将抽象和实现分离会增加设计的难度。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你是一家手机软件公司的开发主管，现在要开发一款游戏和一款通讯录软件。但问题是：
 
@@ -312,6 +309,5 @@ public class 手机品牌M extends 手机品牌 {
 
 希望这个解释能帮助你从实际技术角度理解桥接模式！在系统架构设计中，这种解耦思想非常重要，特别是在需要支持多平台、多实现的场景中。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

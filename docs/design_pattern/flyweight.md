@@ -1,9 +1,9 @@
 # 享元模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 问题引入
 
@@ -115,12 +115,9 @@ public class 主类 {
 
 实现代码和资源的共享，减少了维护成本
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你开了一家印刷厂，很多客户都要求印名片。每个客户的名片内容不同（姓名、职位、电话等），但名片的设计模板（颜色、字体、布局）其实只有几种。享元模式就是让你把可共享的部分（模板）和不可共享的部分（个人信息）分开存储，避免为每个客户都创建全新的设计模板。
 
@@ -241,6 +238,5 @@ public 网站 获取网站分类(String 分类键) {
 
 通过这种理解方式，你可以在系统架构设计中灵活运用享元模式，特别是在需要优化资源使用的场景中。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

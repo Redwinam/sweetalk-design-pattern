@@ -1,9 +1,9 @@
 # 原型模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -187,12 +187,9 @@ Work experience: 1998-2000 Datawhale
 - 需要对类的功能进行通盘考虑，对于已有的类不一定很容易。特别当一个类引用不支持串行化的间接对象，或者引用含有循环结构的时候；
 - 必须实现 Cloneable 接口。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你是一名系统架构师，正在设计一个简历管理系统。用户需要创建多份不同时间点的简历，其中基本信息（姓名、性别）不变，只有工作经历和年龄会变化。如果每次创建新简历都重新实例化对象，会带来性能开销。
 
@@ -305,6 +302,5 @@ public Object 克隆() {
 
 理解原型模式不仅能帮助你在软考中得分，更能提升你在实际系统设计中的对象管理能力。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

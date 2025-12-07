@@ -1,9 +1,9 @@
 # 解释器模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 问题引入
 
@@ -215,12 +215,9 @@ Spring 框架中 SpelExpressionParser 就使用解释器模式
 
 解释器模式为文法中的每条规则至少定义了一个类，导致包含许多规则的文法可能难以管理和维护。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 好的，我来帮你理解解释器模式，我会尽量用通俗易懂的方式结合这个音乐解释器的例子来说明。
 
@@ -289,6 +286,5 @@ Spring 框架中 SpelExpressionParser 就使用解释器模式
 
 希望这个解释对你有帮助！备考时可以多画几次这个模式的 UML 图，理解各个类的关系。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

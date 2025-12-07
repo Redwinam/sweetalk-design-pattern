@@ -1,9 +1,9 @@
 # 模板方法模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -172,12 +172,9 @@ public class 模板方法主类 {
 缺点：
 每一个不同的实现都需要一个子类实现，导致类的个数增加，使得系统更加庞大。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你正在开发一个电商平台的订单处理系统。不同类型的订单（普通订单、团购订单、秒杀订单）有相同的处理流程，但某些步骤的实现不同：
 
@@ -276,6 +273,5 @@ public abstract class JdbcTemplate {
 
 这个模式在系统架构中特别适合处理那些有标准流程但需要灵活扩展的场景，比如工作流引擎、交易系统等。理解这个模式有助于你在架构设计中更好地把握"稳定与变化"的平衡。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

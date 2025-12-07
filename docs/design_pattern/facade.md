@@ -1,9 +1,9 @@
 # 外观模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -205,12 +205,9 @@ public class 外观主类 {
 
 不符合开闭原则。如果要改东西很麻烦，继承和重写都不合适。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 就像你举的基金例子一样，外观模式就像是一个"中介"或"接待员"。想象一下：
 
@@ -356,6 +353,5 @@ public class 基金 {
 
 希望这个深入解析能帮助你更好地理解外观模式！备考过程中可以多思考如何将这个模式应用到实际的系统架构设计中。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

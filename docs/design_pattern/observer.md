@@ -1,9 +1,9 @@
 # 观察者模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -198,12 +198,9 @@ public class 主类 {
 - 不同的订阅者可能需要不同的更新（功能），而不是所有的都一样。比如炒股的可能要切换桌面，而看 NBA 的既要切换桌面还得关掉声音。
 - 主题 依赖于 观察者 对抽象接口的实现，没有实现就无法更新。比如炒股的没有实现更新方法，那他的摸鱼行为自然就要暴露了。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 想象你是一个系统架构师，正在设计一个公司的监控系统。这个系统需要实时监控老板的行踪，并及时通知所有摸鱼的员工。观察者模式就是这个场景的完美解决方案。
 
@@ -340,6 +337,5 @@ public interface EventObserver {
 
 在实际系统设计中，观察者模式是构建松耦合、高响应性系统的利器，特别是在事件驱动架构和微服务体系中有着广泛应用。掌握好这个模式，能让你设计的系统更具弹性和可维护性。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

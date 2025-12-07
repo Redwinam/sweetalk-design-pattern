@@ -1,9 +1,9 @@
 # 备忘录模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -235,12 +235,9 @@ public class 主类 {
 备忘录模式缺点包括：
 
 - 状态数据很大时可能非常消耗资源。尤其是编辑器，如果一直不间断保存所有编辑记录，最终一篇稿子形成时将会消耗非常庞大的资源。
-</div>
-</div>
+</AppTab>
+<AppTab label="💡 解读">
 
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
 
 备忘录模式就像游戏中的存档功能。想象你在玩 RPG 游戏时，在打 Boss 前先保存游戏进度，如果不小心挂了，可以读取存档重新开始，而不是从头玩起。
 
@@ -362,6 +359,5 @@ public class 角色状态管理者 {
 
 理解备忘录模式不仅有助于通过考试，更能提升你在实际系统架构设计中处理状态管理的专业能力。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>

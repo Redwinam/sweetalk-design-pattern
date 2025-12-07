@@ -1,9 +1,9 @@
 # 迭代器模式
 
-<div class="side-by-side-container">
-<div class="side-by-side-panel">
-<div class="side-by-side-header">📖 原文</div>
-<div class="side-by-side-content">
+<AppTabs>
+
+<AppTab label="📖 原文">
+
 
 ## 模式引入
 
@@ -183,12 +183,9 @@ public class 主类 {
 - 过于简单的集合会增加复杂性。
 - 增加新的聚集类时可能需要新的迭代器。
 
-</div>
-</div>
-  
-<div class="side-by-side-panel">
-<div class="side-by-side-header">💡 解读</div>
-<div class="side-by-side-content">
+</AppTab>
+<AppTab label="💡 解读">
+
 
 ### 1. 现实世界类比（买票场景）
 
@@ -320,6 +317,5 @@ A：这就是迭代器模式的应用，编译器会把 foreach 转换为 iterat
 
 希望这个解释能帮你从架构师角度深入理解迭代器模式！在实际系统设计中，这个模式经常和组合模式（Composite）一起使用来处理树形结构。
 
-</div>
-</div>
-</div>
+</AppTab>
+</AppTabs>
